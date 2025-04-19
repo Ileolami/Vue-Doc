@@ -1,0 +1,48 @@
+/* Remove focus ring / border when clicking sidebar links */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+a:focus {
+    outline: none;
+}
+a {
+    color: #42b883;
+}
+
+a:hover {
+    color: #35495e;
+}
+
+body{
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+}
+h1{
+    font-size: 2rem;
+}
+h3{
+    font-size: 1.2rem;
+}
+h2{
+    font-size: 1.5rem;
+}
+
+.counter-btn {
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    background-color: #f9fafb;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add box shadow */
+}
+
+.counter-area {
+    display: flex;
+    justify-content: space-between;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 10px;
+    background-color: #f5f1f1;
+    transition: all 0.2s ease;
+    margin: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add box shadow */
+}
