@@ -14,7 +14,7 @@ export default defineConfig({
               // Relative path to your custom CSS file
 			  './src/styles/custom.css'
             ],
-          favicon: './public/logo.svg',
+          favicon: '/logo.svg',
           logo: {
               src: './public/logo.svg',
           },
