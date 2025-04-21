@@ -30,7 +30,13 @@ export default defineConfig({
               },
               {
                   label: 'Essentials',
-                  autogenerate: { directory: 'essentials' },
+                items: [
+                    { label: 'Creating An Application', link: 'essentials/create' },
+                    { label: 'Template Syntax', link: 'essentials/template' },
+                    { label: 'Reactivity Fundamentals', link: 'essentials/reactivity' },
+                    { label: 'Computed Properties', link: 'essentials/computed' },
+                    { label: 'Class and Style Bindings', link: 'essentials/class-styles' },
+                ]
               },
               {
                   label: 'Components In-Depth',
