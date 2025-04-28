@@ -3,7 +3,14 @@ title: Quick Start
 description: "A quick start guide for Vue"
 ---
 
-import { Aside, Tabs, TabItem, LinkCard, CardGrid, Badge } from "@astrojs/starlight/components";
+import {
+  Aside,
+  Tabs,
+  TabItem,
+  LinkCard,
+  CardGrid,
+  Badge,
+} from "@astrojs/starlight/components";
 
 ## Try Vue Online​
 
@@ -13,6 +20,8 @@ import { Aside, Tabs, TabItem, LinkCard, CardGrid, Badge } from "@astrojs/starli
 
 - If you are already familiar with Node.js and the concept of build tools, you can also try a complete build setup right within your browser on [StackBlitz](https://vite.new/vue).
 
+---
+
 ## Creating a Vue Application
 
 <Aside type="note" title="Prerequisites">
@@ -20,10 +29,15 @@ import { Aside, Tabs, TabItem, LinkCard, CardGrid, Badge } from "@astrojs/starli
   version 18.3 or higher
 </Aside>
 
-In this section, you will learn how to scaffold a Vue [Single Page Application](https://vuejs.org/guide/extras/ways-of-using-vue#single-page-application-spa) on your local machine.
+In this section, you will learn how to create a Vue [Single Page Application](https://vuejs.org/guide/extras/ways-of-using-vue#single-page-application-spa) on your local machine.
 The created project will be using a build setup based on [Vite](https://vitejs.dev/), which will use Vite and allow us to use Vue [Single-File Components (SFCs)](https://vuejs.org/guide/scaling-up/sfc).
 
-Make sure you have an up-to-date version of [Node.js](https://nodejs.org/) installed and your current working directory is the one where you intend to create a project. Run the following command in your command line (without the `$` sign):
+<Aside type="caution">
+  Make sure you have an up-to-date version of [Node.js](https://nodejs.org/)
+  installed and your current working directory is the one where you intend to
+  create a project. Run the following command in your command line (without the
+  `$` sign):
+</Aside>
 
 <Tabs>
   <TabItem value="npm" label="npm" default>
@@ -121,31 +135,22 @@ When you are ready to ship your app to production, run the following:
 
 <Tabs>
   <TabItem value="npm" label="npm" default>
-    ```bash 
-    $ npm run build 
-    ```
+    ```bash $ npm run build ```
   </TabItem>
   <TabItem value="yarn" label="yarn">
-    ```bash 
-    $ yarn build 
-    ```
+    ```bash $ yarn build ```
   </TabItem>
   <TabItem value="pnpm" label="pnpm">
-    ```bash 
-    $ pnpm run build 
-    ```
+    ```bash $ pnpm run build ```
   </TabItem>
   <TabItem value="bun" label="bun">
-    ```bash 
-    $ bun run build 
-    ```
+    ```bash $ bun run build ```
   </TabItem>
 </Tabs>
 
-
 This will create a production-ready build of your app in the project's `./dist` directory. Check out the [Production Deployment Guide](https://vuejs.org/guide/best-practices/production-deployment.html) to learn more about shipping your app to production.
 
-[Next Steps >](https://vuejs.org/guide/quick-start.html#next-steps)
+[Next Steps >](/guides/quick#next-steps)
 
 ---
 
@@ -283,7 +288,19 @@ If you are using VS Code, you can install the [es6-string-html](https://marketpl
 If you skipped the [Introduction](/guides/intro), we strongly recommend reading it before moving on to the rest of the documentation.
 
 <CardGrid>
-  <LinkCard href="/guides/essentials/application" title="Continue with the Guide" description="The guide walks you through every aspect of the framework in full detail, with interactive examples."></LinkCard>
-  <LinkCard href="https://vuejs.org/tutorial/" title="Tutorials"  description="For those who prefer to learning by practicals."></LinkCard>
-  <LinkCard href="https://vuejs.org/examples/" title="Examples"  description="Explore examples of core featuresand common UI tasks"></LinkCard>
+  <LinkCard
+    href="/essentials/create"
+    title="Continue with the Guide"
+    description="The guide walks you through every aspect of the framework in full detail, with interactive examples."
+  ></LinkCard>
+  <LinkCard
+    href="https://vuejs.org/tutorial/"
+    title="Tutorials"
+    description="For those who prefer to learning by practicals."
+  ></LinkCard>
+  <LinkCard
+    href="https://vuejs.org/examples/"
+    title="Examples"
+    description="Explore examples of core featuresand common UI tasks"
+  ></LinkCard>
 </CardGrid>
