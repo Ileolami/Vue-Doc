@@ -132,3 +132,8 @@ homeh2{
     font-weight: 800;
     text-align: center;
 }
+.inline-link{
+    display: flex;
+    margin-top: 15px;
+    gap: 10px;
+}
