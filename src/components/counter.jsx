@@ -5,9 +5,9 @@ export default function Counter() {
 
   return (
     <div className="counter-area">
-        <button onClick={() => setCount(count + 1)} className="counter-btn">
+      <button onClick={() => setCount(count + 1)} className="counter-btn">
         Count is: {count}
-        </button>
+      </button>
     </div>
   );
 }

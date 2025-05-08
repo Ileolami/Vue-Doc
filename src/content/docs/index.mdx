@@ -3,7 +3,7 @@ title: Welcome to Vue.js Documentation
 description: The Progressive JavaScript Framework
 template: splash
 hero:
-  tagline: Build amazing user interfaces with Vue.js – approachable, performant, and versatile.
+  tagline: Build amazing user interfaces with Vue.js – approachable, performant, and versatile
   image:
     file: ../../assets/logo.png
   actions:
@@ -17,23 +17,14 @@ hero:
       variant: minimal
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
 
 ---
 
 <h2 style="font-size: 2.25rem; font-size: 2.25rem;  text-align: center;  margin-top: 2rem; margin-bottom: 1.5rem; ">Next Steps 🚀</h2>
 
 <CardGrid stagger class="card-grid mt-12">
-  <Card title="📄 Update Content" icon="pencil" class="animated-card">
-    Edit `src/content/docs/index.mdx` to see this page change.
-  </Card>
-  <Card title="➕ Add New Content" icon="add-document" class="animated-card">
-    Add Markdown or MDX files to `src/content/docs` to create new pages.
-  </Card>
-  <Card title="⚙️ Configure Your Site" icon="setting" class="animated-card">
-    Edit your `sidebar` and other config in `astro.config.mjs`.
-  </Card>
-  <Card title="📚 Read the Docs" icon="open-book" class="animated-card">
-    Learn more in [the Starlight Docs](https://starlight.astro.build/).
-  </Card>
+  <LinkCard title="📄 Learn about the Basics" description="Get started with the basics of Vue.js" href="/guides/intro/"></LinkCard>
+  <LinkCard title="📚 Read the Guide" description="Learn how to build Vue.js applications" href="/essentials/create"></LinkCard>
+  <LinkCard title="🔍 Explore the API" description="Learn about the Vue.js API" href="/api/"></LinkCard>
 </CardGrid>

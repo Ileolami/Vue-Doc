@@ -1,0 +1,137 @@
+---
+title: Vue Components
+description: Learn about Vue components
+---
+import { Icon } from "@astrojs/starlight/components";
+
+Vue components are components that contain HTML, JS, and CSS of in a single file.
+
+## Single-File Components​
+  In most build-tool-enabled Vue projects, components are written using a special HTML-like file format called a **Single-File Component (SFC)**(also known as `*.vue` files). As the name implies, a Vue SFC bundles the component’s template (HTML), logic (JavaScript), and styles (CSS) into a single file. Below is the same example rewritten using the SFC format:
+
+    ```vue
+    <script setup>
+    import { ref } from "vue";
+    const count = ref(0);
+    </script>
+
+    <template>
+      <button @click="count++">Count is: {{ count }}</button>
+    </template>
+
+    <style scoped>
+    button {
+      font-weight: bold;
+    }
+    </style>
+    ```
+
+    SFC is a defining feature of Vue and is the recommended way to author Vue components if your use case warrants a build setup. 
+    You can learn more about [Single-File Components in the Scaling Up section](/scaling-up/sfc).
+
+## API Styles​
+You can create Vue components in two different API styles: **Options API** and **Composition API**.
+
+## Options API​
+When using Options API, component's logic are define using an object of options such as `data`, `methods`, and `mounted`. The properties defined in this object are accessible via `this` inside functions, where this refers to the component instance:
+
+    ```vue
+    <script>
+    export default {
+      // Properties returned from data() become reactive state
+      // and will be exposed on `this`.
+      data() {
+        return {
+          count: 0,
+        };
+      },
+
+      // Methods are functions that mutate state and trigger updates.
+      // They can be bound as event handlers in templates.
+      methods: {
+        increment() {
+          this.count++;
+        },
+      },
+
+      // Lifecycle hooks are called at different stages
+      // of a component's lifecycle.
+      // This function will be called when the component is mounted.
+      mounted() {
+        console.log(`The initial count is ${this.count}.`);
+      },
+    };
+    </script>
+
+    <template>
+      <button @click="increment">Count is: {{ count }}</button>
+    </template>
+    ```
+
+    <a
+      href="https://play.vuejs.org/#eNptkMFqxCAQhl9lkB522ZL0HNKlpa/Qo4e1ZpLIGhUdl5bgu9es2eSyIMio833zO7NP56pbRNawNkivHJ25wV9nPUGHvYiaYOYGoK7Bo5CkbgiBBOFy2AkSh2N5APmeojePCkDaaKiBt1KnZUuv3Ky0PppMsyYAjYJgigu0oEGYDsirYUAP0WULhqVrQhptF5qHQhnpcUJD+wyQaSpUd/Xp9NysVY/yT2qE0dprIS/vsds5Mg9mNVbaDofL94jZpUgJXUKBCvAy76ZUXY53CTd5tfX2k7kgnJzOCXIF0P5EImvgQ2olr++cbRE4O3+t6JxvXj0ptXVpye1tvbFY+ge/NJZt"
+      class="inline-link"
+    >
+      <Icon name="seti:video"/>
+      <span style="margin-top: -4px">Try it in the Playground</span>
+    </a>
+
+
+## Composition API 
+
+When using Composition API, a component's logic is defined using imported API functions. In SFCs, it is commonly used with [`<script setup>`](https://vuejs.org/api/sfc-script-setup.html). 
+The `setup` attribute Vue signals to apply compile-time transformations, enabling a more concise syntax with reduced boilerplate. 
+For example, any imports, top-level variables, or functions declared in a `<script setup>` block are automatically exposed to the template without needing to return them manually.
+
+    Below is the same component, retaining the original template, but rewritten using the Composition API and `<script setup>`:
+
+    ```vue
+    <script setup>
+    import { ref, onMounted } from "vue";
+
+    // reactive state
+    const count = ref(0);
+
+    // functions that mutate state and trigger updates
+    function increment() {
+      count.value++;
+    }
+
+    // lifecycle hooks
+    onMounted(() => {
+      console.log(`The initial count is ${count.value}.`);
+    });
+    </script>
+
+    <template>
+      <button @click="increment">Count is: {{ count }}</button>
+    </template>
+    ```
+    <a href="https://play.vuejs.org/#eNpNkMFqwzAQRH9lMYU4pNg9Bye09NxbjzrEVda2iLwS0spQjP69a+yYHnRYad7MaOfiw/tqSliciybqYDxDRE7+qsiM3gWGGQJ2r+DoyyVivEOGLrgRDkIdFCmqa1G0ms2EELllVKQdRQa9AHBZ+PLtuEm7RCKVd+ChZRjTQqwctHQHDqbvMUDyd7mKip4AGNIBRyQujzArgtW/mlqb8HRSlLcEazrUv9oiDM49xGGvXgp5uT5his5iZV1f3r4HFHvDprVbaxPhZf4XkKub/CDLaep1T7IhGRhHb6WoTADNT2KWpu/aGv24qGKvrIrr5+Z7hnneQnJu6hURvKl3ryL/ARrVkuI=" class="inline-link">
+      <Icon name="seti:video"/>
+      <span style="margin-top: -4px">Try it in the Playground</span>
+    </a>
+
+### Which to Choose?​
+
+Both API styles are fully capable of covering common use cases. They are different interfaces powered by the exact same underlying system. In fact, the Options API is implemented on top of the Composition API! The fundamental concepts and knowledge about Vue are shared across the two styles.
+
+The Options API is centered around the concept of a "component instance" (`this` as seen in the example), which typically aligns better with a class-based mental model for users coming from OOP language backgrounds. It is also more beginner-friendly by abstracting away the reactivity details and enforcing code organization via option groups.
+
+The Composition API is centered around declaring reactive state variables directly in a function scope and composing state from multiple functions together to handle complexity. It is more free-form and requires an understanding of how reactivity works in Vue to be used effectively. In return, its flexibility enables more powerful patterns for organizing and reusing logic.
+
+You can learn more about the comparison between the two styles and the potential benefits of Composition API in the [Composition API FAQ](https://vuejs.org/guide/extras/composition-api-faq.html).
+
+If you are new to Vue, here's our general recommendation:
+
+- For learning purposes, go with the style that looks easier to understand to you. Again, most of the core concepts are shared between the two styles. You can always pick up the other style later.
+
+- For production use:
+
+  - Go with Options API if you are not using build tools, or plan to use Vue primarily in low-complexity scenarios, e.g. progressive enhancement.
+
+  - Go with Composition API + Single-File Components if you plan to build full applications with Vue.
+
+You don't have to commit to only one style during the learning phase. The rest of the documentation will provide code samples in both styles where applicable, and you can toggle between them at any time using the **API Preference switches** at the top of the left sidebar.
+
+---
