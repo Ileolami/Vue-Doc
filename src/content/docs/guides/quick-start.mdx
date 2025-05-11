@@ -11,6 +11,7 @@ import {
   CardGrid,
   Badge,
   Icon,
+  Steps
 } from "@astrojs/starlight/components";
 
 ## Try Vue Online​
@@ -26,101 +27,107 @@ import {
 ## Installation
 
 <Aside type="note" title="Prerequisites">
-  - Familiarity with the command line - Install [Node.js](https://nodejs.org/)
+  - Familiarity with the command line 
+  - Install [Node.js](https://nodejs.org/)
   version 18.3 or higher
 </Aside>
 
 In this section, you will learn how to create a Vue [Single Page Application](https://vuejs.org/guide/extras/ways-of-using-vue#single-page-application-spa) on your local machine.
-The created project will be using a build setup based on [Vite](https://vitejs.dev/), which will use Vite and allow us to use Vue [Single-File Components (SFCs)](https://vuejs.org/guide/scaling-up/sfc).
+The created project will be using a build setup based on [Vite](https://vitejs.dev/), which will allow us to use Vue [Single-File Components (SFCs)](https://vuejs.org/guide/scaling-up/sfc).
 
 <Aside type="caution">
-  Make sure you have an up-to-date version of [Node.js](https://nodejs.org/)
-  installed and your current working directory is the one where you intend to
-  create a project. Run the following command in your command line (without the
-  `$` sign):
+  Make sure you have the latest version of [Node.js](https://nodejs.org/)
+  installed and your current working directory is the one you intend to
+  create a project.
 </Aside>
 
-<Tabs>
-  <TabItem value="npm" label="npm" default>
-    ```bash
-    $ npm create vue@latest
-    ```
-  </TabItem>
-  <TabItem value="yarn" label="yarn">
-    ```bash
-    # For Yarn (v1+)
-    $ yarn create vue
+<Steps>
+1. Create a new project using `create-vue` by running one of these commands:
+   <Tabs>
+     <TabItem value="npm" label="npm" default>
+       ```bash
+       npm create vue@latest
+       ```
+     </TabItem>
+     <TabItem value="yarn" label="yarn">
+       ```bash
+       # For Yarn (v1+)
+       yarn create vue
 
-    # For Yarn Modern (v2+)
-    $ yarn create vue@latest
+       # For Yarn Modern (v2+)
+       yarn create vue@latest
 
-    # For Yarn ^v4.11
-    $ yarn dlx create-vue@latest
-    ```
+       # For Yarn ^v4.11
+       yarn dlx create-vue@latest
+       ```
+     </TabItem>
+     <TabItem value="pnpm" label="pnpm">
+       ```bash
+       pnpm create vue@latest
+       ```
+     </TabItem>
+     <TabItem value="bun" label="bun">
+       ```bash
+       bun create-vue@latest
+       ```
+     </TabItem>
+   </Tabs>
+   This command will install and execute [create-vue](https://github.com/vuejs/create-vue), the official Vue project scaffolding tool.
 
-  </TabItem>
-  <TabItem value="pnpm" label="pnpm">
-    ```bash
-    $ pnpm create vue@latest
-    ```
-  </TabItem>
-  <TabItem value="bun" label="bun">
-    ```bash
-    $ bun create-vue@latest
-    ```
-  </TabItem>
-</Tabs>
+2. Answer the prompts for optional features such as TypeScript and testing support:
+   ```bash
+   ✔ Project name: … <your-project-name>
+   ✔ Add TypeScript? … No / Yes
+   ✔ Add JSX Support? … No / Yes
+   ✔ Add Vue Router for Single Page Application development? … No / Yes
+   ✔ Add Pinia for state management? … No / Yes
+   ✔ Add Vitest for Unit testing? … No / Yes
+   ✔ Add an End-to-End Testing Solution? … No / Cypress / Nightwatch / Playwright
+   ✔ Add ESLint for code quality? … No / Yes
+   ✔ Add Prettier for code formatting? … No / Yes
+   ✔ Add Vue DevTools 7 extension for debugging? (experimental) … No / Yes
 
-This command will install and execute [create-vue](https://github.com/vuejs/create-vue), the official Vue project scaffolding tool. You will be presented with prompts for several optional features such as TypeScript and testing support:
+   Scaffolding project in ./<your-project-name>...
+   Done.
+   ```
+   <Aside type="note" title="Note">
+     If you are unsure about an option, simply choose `No` by hitting enter for now.
+   </Aside>
 
-```bash
-    ✔ Project name: … <your-project-name>
-    ✔ Add TypeScript? … No / Yes
-    ✔ Add JSX Support? … No / Yes
-    ✔ Add Vue Router for Single Page Application development? … No / Yes
-    ✔ Add Pinia for state management? … No / Yes
-    ✔ Add Vitest for Unit testing? … No / Yes
-    ✔ Add an End-to-End Testing Solution? … No / Cypress / Nightwatch / Playwright
-    ✔ Add ESLint for code quality? … No / Yes
-    ✔ Add Prettier for code formatting? … No / Yes
-    ✔ Add Vue DevTools 7 extension for debugging? (experimental) … No / Yes
+3. Once the project is created, follow the instructions to install dependencies and start the dev server:
+   <Tabs>
+     <TabItem value="npm" label="npm" default>
+       ```bash
+       cd <your-project-name>
+       npm install
+       npm run dev
+       ```
+     </TabItem>
+     <TabItem value="yarn" label="yarn">
+       ```bash
+       cd <your-project-name>
+       yarn
+       yarn dev
+       ```
+     </TabItem>
+     <TabItem value="pnpm" label="pnpm">
+       ```bash
+       cd <your-project-name>
+       pnpm install
+       pnpm run dev
+       ```
+     </TabItem>
+     <TabItem value="bun" label="bun">
+       ```bash
+       cd <your-project-name>
+       bun install
+       bun run dev
+       ```
+     </TabItem>
+   </Tabs>
+</Steps>
 
-    Scaffolding project in ./<your-project-name>...
-    Done.
-```
-
-If you are unsure about an option, simply choose `No` by hitting enter for now. Once the project is created, follow the instructions to install dependencies and start the dev server:
-
-<Tabs>
-  <TabItem value="npm" label="npm" default>
-    ```bash
-    $ cd <your-project-name>
-    $ npm install
-    $ npm run dev
-    ```
-  </TabItem>
-  <TabItem value="yarn" label="yarn">
-    ```bash
-    $ cd <your-project-name>
-    $ yarn
-    $ yarn dev
-    ```
-  </TabItem>
-  <TabItem value="pnpm" label="pnpm">
-    ```bash
-    $ cd <your-project-name>
-    $ pnpm install
-    $ pnpm run dev
-    ```
-  </TabItem>
-  <TabItem value="bun" label="bun">
-    ```bash
-    $ cd <your-project-name>
-    $ bun install
-    $ bun run dev
-    ```
-  </TabItem>
-</Tabs>
+---
 
 You should now have your first Vue project running! Note that the example components in the generated project are written using the [Composition API](https://vuejs.org/guide/introduction#composition-api)
 and `<script setup>`, rather than the [Options API](https://vuejs.org/guide/introduction#options-api). Here are some additional tips:
@@ -132,26 +139,39 @@ and `<script setup>`, rather than the [Options API](https://vuejs.org/guide/intr
 - To learn more about the underlying build tool Vite, check out the [Vite docs](https://vitejs.dev/).
   -If you choose to use TypeScript, check out the [TypeScript Usage Guide](https://vuejs.org/guide/typescript/overview).
 
+---
+
+## Production Deployment
 When you are ready to ship your app to production, run the following:
 
 <Tabs>
   <TabItem value="npm" label="npm" default>
-    ```bash $ npm run build ```
+    ```bash 
+       npm run build
+     ```
   </TabItem>
   <TabItem value="yarn" label="yarn">
-    ```bash $ yarn build ```
+    ```bash 
+      yarn build
+    ```
   </TabItem>
   <TabItem value="pnpm" label="pnpm">
-    ```bash $ pnpm run build ```
+    ```bash 
+      pnpm run build 
+    ```
   </TabItem>
   <TabItem value="bun" label="bun">
-    ```bash $ bun run build ```
+    ```bash 
+      bun run build
+    ```
   </TabItem>
 </Tabs>
 
+---
+
 This will create a production-ready build of your app in the project's `./dist` directory. Check out the [Production Deployment Guide](https://vuejs.org/guide/best-practices/production-deployment.html) to learn more about shipping your app to production.
 
-[Next Steps >](/guides/quick#next-steps)
+[Next Steps >](/guides/quick-start#next-steps)
 
 ---
 
@@ -163,15 +183,17 @@ You can use Vue directly from a CDN via a script tag:
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 ```
 
-Here we are using [unpkg](https://unpkg.com/), but you can also use any CDN that serves npm packages, for example [jsdelivr](https://www.jsdelivr.com/package/npm/vue) or [cdnjs](https://cdnjs.com/libraries/vue). Of course, you can also download this file and serve it yourself.
+Here we are use [unpkg](https://unpkg.com/), but you can also use any CDN that serves npm packages, for example [jsdelivr](https://www.jsdelivr.com/package/npm/vue) or [cdnjs](https://cdnjs.com/libraries/vue). Also, you can download this file and serve it yourself.
+<Aside type="note" title="Note">
+ When using Vue from a CDN, there is no "**build step**" involved. This makes the setup a lot simpler, and is suitable for enhancing static HTML or integrating with a backend framework. However, you won't be able to use the Single-File Component (SFC) syntax.
+</Aside>
 
-When using Vue from a CDN, there is no "build step" involved. This makes the setup a lot simpler, and is suitable for enhancing static HTML or integrating with a backend framework. However, you won't be able to use the Single-File Component (SFC) syntax.
 
 ### Using the Global Build​
 
-The above link loads the global build of `Vue`, where all top-level APIs are exposed as properties on the global Vue object. Here is a full example using the global build:
+The above link loads the _global build_ of `Vue`, where all top-level APIs are exposed as properties on the global Vue object. Here is a full example using the global build:
 
-```html
+```html live
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
 <div id="app">{{ message }}</div>
@@ -190,21 +212,38 @@ The above link loads the global build of `Vue`, where all top-level APIs are exp
 </script>
 ```
 
-[CodePen Demo >](https://codepen.io/vuejs-examples/pen/eYQpQEG)
-
 <Aside type="tip" title="Tip">
   Many of the examples for Composition API throughout the guide will be using the `<script setup>` syntax, which requires build tools. If you intend to use Composition API without a build step, consult the usage of the [`setup()` option](https://vuejs.org/api/composition-api-setup.html).
 </Aside>
 
-### Enabling Import maps​
+### Using the ES Module Build​
+Throughout the rest of the documentation, we will be primarily using [ES modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) syntax. 
+Most modern browsers now support ES modules natively, so we can use Vue from a CDN via native ES modules like this:
+```html
+<div id="app">{{ message }}</div>
 
-In the above example, we are importing from the full CDN URL, but in the rest of the documentation you will see code like this:
+<script type="module">
+  import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+
+  createApp({
+    setup() {
+      const message = ref('Hello Vue!')
+      return {
+        message
+      }
+    }
+  }).mount('#app')
+</script>
+```
+
+### Enabling Import maps
+In the above example, you are importing from the full CDN URL, but in the rest of the documentation you will see code like this:
 
 ```js
 import { createApp } from "vue";
 ```
 
-We can teach the browser where to locate the `vue` import by using [Import Maps](https://caniuse.com/import-maps):
+you can teach the browser where to locate the `vue` import by using [Import Maps](https://caniuse.com/import-maps):
 
 ```html
 <script type="importmap">
@@ -245,33 +284,35 @@ While it is possible to use Vue without a build system, an alternative approach 
 
 </Aside>
 
-### Splitting Up the Modules​
+## Splitting Up the Modules​
 
-As we dive deeper into the guide, we may need to split our code into separate JavaScript files so that they are easier to manage. For example:
+As you dive deeper into the guide, its best to split our code into separate JavaScript files so that they are easier to manage. For example:
+<Steps>
+1. Add the following into `index.html`
+    ```html
+    <!-- index.html -->
+    <div id="app"></div>
 
-```html
-<!-- index.html -->
-<div id="app"></div>
+    <script type="module">
+      import { createApp } from "vue";
+      import MyComponent from "./my-component.js";
 
-<script type="module">
-  import { createApp } from "vue";
-  import MyComponent from "./my-component.js";
-
-  createApp(MyComponent).mount("#app");
-</script>
-```
-
-```js
-// my-component.js
-import { ref } from "vue";
-export default {
-  setup() {
-    const count = ref(0);
-    return { count };
-  },
-  template: `<div>Count is: {{ count }}</div>`,
-};
-```
+      createApp(MyComponent).mount("#app");
+    </script>
+    ```
+2. Add the following into `my-component.js`
+    ```js
+    // my-component.js
+    import { ref } from "vue";
+    export default {
+      setup() {
+        const count = ref(0);
+        return { count };
+      },
+      template: `<div>Count is: {{ count }}</div>`,
+    };
+    ```
+</Steps>
 
 If you directly open the above `index.html` in your browser, you will find that it throws an error because ES modules cannot work over the `file://` protocol, which is the protocol the browser uses when you open a local file.
 

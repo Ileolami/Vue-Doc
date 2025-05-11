@@ -8,9 +8,13 @@ import vue from "@astrojs/vue";
 export default defineConfig({
   integrations: [
     react({
-      include: ["**/*.react"],
+      include: ['**/react/*', '**/*.react.*'],
     }),
-    vue(),
+    vue(
+      {
+        exclude: ['**/react/*', '**/*.react.*'],
+      }
+    ),
     liveCode({}),
     starlight({
       title: "Vue.js",
@@ -36,8 +40,8 @@ export default defineConfig({
           label: "Getting Started",
           items: [
             { label: "Introduction", link: "guides/intro" },
-            { label: "Vue Component", link: "guides/vue-components" },
             { label: "Quick Start", link: "guides/quick-start" },
+            { label: "Vue Component", link: "guides/vue-components" },
           ],
         },
         {
