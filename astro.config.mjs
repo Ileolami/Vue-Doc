@@ -2,11 +2,16 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import react from "@astrojs/react";
-
+import liveCode from 'astro-live-code'
+import vue from "@astrojs/vue";
 // https://astro.build/config
 export default defineConfig({
   integrations: [
-    react(),
+    react({
+      include: ["**/*.react"],
+    }),
+    vue(),
+    liveCode({}),
     starlight({
       title: "Vue.js",
       customCss: [
