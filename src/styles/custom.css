@@ -140,3 +140,9 @@ homeh2 {
   margin-top: 15px;
   gap: 10px;
 }
+
+.icons{
+  margin-top: -4px;
+  border-radius: 5px;
+  margin-left: 5px;
+}

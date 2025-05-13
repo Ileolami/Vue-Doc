@@ -59,7 +59,13 @@ export default defineConfig({
         },
         {
           label: "Components In-Depth",
-          autogenerate: { directory: "components" },
+          items: [
+            { label: "Registration", link: "components/registration" },
+            { label: "Props", link: "components/props" },
+            { label: "Events", link: "components/events" },
+            { label: "Component v-model", link: "components/component-v" },
+            { label: "Fallthrough Attributes", link: "components/fallthrough" },
+          ],
         },
         {
           label: "Reusability",
@@ -81,7 +87,7 @@ export default defineConfig({
         },
         {
           label: "Typescript",
-          autogenerate: { directory: "typescript" },
+          autogenerate: { directory: "typescripts" },
         },
         {
           label: "Extra Topics",
