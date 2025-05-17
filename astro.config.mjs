@@ -6,6 +6,10 @@ import liveCode from 'astro-live-code'
 import vue from "@astrojs/vue";
 // https://astro.build/config
 export default defineConfig({
+    i18n: {
+    locales: ["es", "en", "pt-br", "fr", "ja", "zh-CN"],
+    defaultLocale: "en",
+  },
   integrations: [
     react({
       include: ['**/react/*', '**/*.react.*'],
@@ -38,33 +42,30 @@ export default defineConfig({
       sidebar: [
         {
           label: "Getting Started",
-          items: [
-            { label: "Introduction", link: "guides/intro" },
-            { label: "Quick Start", link: "guides/quick-start" },
-            { label: "Vue Component", link: "guides/vue-components" },
-          ],
+          items:[
+            {slug: "guides/intro"},
+            {slug: "guides/quick-start"},
+            {slug: "guides/vue-components"},
+          ]
         },
         {
           label: "Essentials",
           items: [
-            { label: "Creating An Application", link: "essentials/create" },
-            { label: "Template Syntax", link: "essentials/template" },
-            { label: "Reactivity Fundamentals", link: "essentials/reactivity" },
-            { label: "Computed Properties", link: "essentials/computed" },
-            {
-              label: "Class and Style Bindings",
-              link: "essentials/class-styles",
-            },
+           {slug: "essentials/create"},
+           {slug: "essentials/template"},
+           {slug: "essentials/reactivity"},
+           {slug: "essentials/computed"},
+           {slug: "essentials/class-styles"},
           ],
         },
         {
           label: "Components In-Depth",
           items: [
-            { label: "Registration", link: "components/registration" },
-            { label: "Props", link: "components/props" },
-            { label: "Events", link: "components/events" },
-            { label: "Component v-model", link: "components/component-v" },
-            { label: "Fallthrough Attributes", link: "components/fallthrough" },
+            {slug: "components/registration"},
+            {slug: "components/props"},
+            {slug: "components/events"},
+            {slug: "components/component-v"},
+            {slug: "components/fallthrough"},
           ],
         },
         {
@@ -78,7 +79,7 @@ export default defineConfig({
         {
           label: "Scaling Up",
           items: [
-            { label: "Single-File Components", link: "scaling-up/sfc" },
+            {slug: "scaling-up/sfc"},
           ],
         },
         {

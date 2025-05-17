@@ -1,21 +1,26 @@
 ---
 title: Creating a Vue Application
-description: Learn how to create a Vue application
+description: Learn how to create a Vue application   
+sidebar: 
+   label: Application
 ---
-import { Aside } from "@astrojs/starlight/components";
+import { Aside, Code, Tabs, TabItem } from "@astrojs/starlight/components";
 import Counter from "../../../components/counter.jsx";
 
 ## The Application Instance
 
 Every Vue application starts by creating a new application instance with the [`createApp`](https://vuejs.org/api/application.html#createapp) function:
 
-```js
-import { createApp } from "vue";
+<Code
+lang="js"
+code={`
+import { createApp } from 'vue'
 
 const app = createApp({
   /* root component options */
-});
-```
+})
+`}
+/>
 
 This `createApp` function takes the root component for your appliaction.
 
@@ -25,13 +30,15 @@ This `createApp` function takes the root component for your appliaction.
 
 The `root component` is the top-level component that contains all other components. For example, If you are using Single-File Components, you will import the root component from another file:
 
-```js
-import { createApp } from "vue";
-// import the root component App from a single-file component.
-import App from "./App.vue";
+<Code
+lang="js"
+code={`
+import { createApp } from 'vue'
+import App from './App.vue'
 
-const app = createApp(App);
-```
+const app = createApp(App)
+`}
+/>
 
 While many examples in this guide only need a single component, most real applications are organized into a tree of nested, reusable components. For example, a Todo application's component tree might look like this:
 
@@ -54,10 +61,12 @@ In later sections of the guide, you will learn how to define and compose multipl
 
 An application instance needs `.mount()` method to render the application. It expects a "container" argument, which can either be an actual DOM element or a selector string:
 
-```js
-<div id="app"></div>;
-app.mount("#app");
-```
+<Code
+lang="js"
+code={`
+app.mount('#app')
+`}
+/>
 
 The content of the app's root component will be rendered inside the container element. The container element itself is not considered part of the app.
 
@@ -67,32 +76,39 @@ The `.mount()` method should be called after all app configurations and asset re
 Also note that its return value is the **root component instance**, not the application instance.
 </Aside>
 
-
 ---
 
 ## In-DOM Root Component Template
+<Tabs>
+  <TabItem label="Code">
+    <Code
+    lang="js"
+    code={`
+    import { createApp } from 'vue'
 
-```html
-<div id="app">
-  <button @click="count++">{{ count }}</button>
-</div>
-```
-
-```js
-import { createApp } from "vue";
-
-const app = createApp({
-  data() {
-    return {
-      count: 0,
-    };
-  },
-});
-
-app.mount("#app");
-```
-
-<Counter client:load />
+    const app = createApp({
+      data() {
+        return {
+          count: 0
+        }
+      }
+    })
+    app.mount('#app')
+    `}
+    />
+    <Code
+    lang="html"
+    code={`
+    <div id="app">
+      <button @click="count++">{{ count }}</button>
+    </div>
+    `}
+    />
+  </TabItem>
+  <TabItem label="Preview" default>
+   <Counter client:load />
+  </TabItem>
+</Tabs>
 
 Vue will automatically use the container's `innerHTML` as the template if the root component does not already have a `template` option.
 <Aside type="tip" title="In-DOM Templates">

@@ -4,9 +4,10 @@ description: An overview on Vue.js
 keywords: [vue, introduction]
 ---
 
-import { Aside, Icon } from "@astrojs/starlight/components";
+import { Aside, Icon, Code, Tabs, TabItem } from "@astrojs/starlight/components";
 import Counter from "../../../components/counter.jsx";
 import { Card, CardGrid, LinkCard } from "@astrojs/starlight/components";
+import { InlineLink } from "@astrojs/starlight/components";
 
 ## What is Vue?
 
@@ -47,28 +48,34 @@ This is why Vue is often referred to as **"The Progressive Framework"** because 
 </a>
 
 Here is a quick example to give you a feel of what Vue code looks like:
+<Tabs>
+ <TabItem label="Code">
+    <Code
+  lang="js"
+  code={`
+      import { createApp, ref } from 'vue'
 
-```js
-    import { createApp, ref } from 'vue'
+      createApp({
+      setup() {
+          return {
+          count: ref(0)
+          }
+      }
+      }).mount('#app')
 
-    createApp({
-    setup() {
-        return {
-        count: ref(0)
-        }
-    }
-    }).mount('#app')
+      <div id='app'>
+          <button @click='count++'>
+              Count is: {{ count }}
+          </button>
+      </div>
+  `}
+  />
+ </TabItem>
+ <TabItem label="Preview" default>
+  <Counter client:load />
+ </TabItem>
+</Tabs>
 
-    <div id='app'>
-        <button @click='count++'>
-            Count is: {{ count }}
-        </button>
-    </div>
-```
-
-Result:
-
-<Counter client:load />
 
 The above example demonstrates the two core features of Vue:
 

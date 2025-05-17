@@ -10,8 +10,10 @@ import {
   LinkCard,
   CardGrid,
   Badge,
+  Code,
   Icon,
-  Steps
+  Steps,
+  LinkButton
 } from "@astrojs/starlight/components";
 
 ## Try Vue Online​
@@ -44,12 +46,12 @@ The created project will be using a build setup based on [Vite](https://vitejs.d
 <Steps>
 1. Create a new project using `create-vue` by running one of these commands:
    <Tabs>
-     <TabItem value="npm" label="npm" default>
+     <TabItem value="npm" label="npm" default icon="npm">
        ```bash
        npm create vue@latest
        ```
      </TabItem>
-     <TabItem value="yarn" label="yarn">
+     <TabItem value="yarn" label="yarn" icon="seti:yarn">
        ```bash
        # For Yarn (v1+)
        yarn create vue
@@ -61,12 +63,12 @@ The created project will be using a build setup based on [Vite](https://vitejs.d
        yarn dlx create-vue@latest
        ```
      </TabItem>
-     <TabItem value="pnpm" label="pnpm">
+     <TabItem value="pnpm" label="pnpm" icon="pnpm">
        ```bash
        pnpm create vue@latest
        ```
      </TabItem>
-     <TabItem value="bun" label="bun">
+     <TabItem value="bun" label="bun" icon="bun">
        ```bash
        bun create-vue@latest
        ```
@@ -96,28 +98,28 @@ The created project will be using a build setup based on [Vite](https://vitejs.d
 
 3. Once the project is created, follow the instructions to install dependencies and start the dev server:
    <Tabs>
-     <TabItem value="npm" label="npm" default>
+     <TabItem value="npm" label="npm" default icon="npm">
        ```bash
        cd <your-project-name>
        npm install
        npm run dev
        ```
      </TabItem>
-     <TabItem value="yarn" label="yarn">
+     <TabItem value="yarn" label="yarn" icon="seti:yarn">
        ```bash
        cd <your-project-name>
        yarn
        yarn dev
        ```
      </TabItem>
-     <TabItem value="pnpm" label="pnpm">
+     <TabItem value="pnpm" label="pnpm" icon="pnpm">
        ```bash
        cd <your-project-name>
        pnpm install
        pnpm run dev
        ```
      </TabItem>
-     <TabItem value="bun" label="bun">
+     <TabItem value="bun" label="bun" icon="bun">
        ```bash
        cd <your-project-name>
        bun install
@@ -145,22 +147,22 @@ and `<script setup>`, rather than the [Options API](https://vuejs.org/guide/intr
 When you are ready to ship your app to production, run the following:
 
 <Tabs>
-  <TabItem value="npm" label="npm" default>
+  <TabItem value="npm" label="npm" default icon="npm">
     ```bash 
        npm run build
      ```
   </TabItem>
-  <TabItem value="yarn" label="yarn">
+  <TabItem value="yarn" label="yarn" icon="seti:yarn">
     ```bash 
       yarn build
     ```
   </TabItem>
-  <TabItem value="pnpm" label="pnpm">
+  <TabItem value="pnpm" label="pnpm" icon="pnpm">
     ```bash 
       pnpm run build 
     ```
   </TabItem>
-  <TabItem value="bun" label="bun">
+  <TabItem value="bun" label="bun" icon="bun">
     ```bash 
       bun run build
     ```
@@ -171,8 +173,14 @@ When you are ready to ship your app to production, run the following:
 
 This will create a production-ready build of your app in the project's `./dist` directory. Check out the [Production Deployment Guide](https://vuejs.org/guide/best-practices/production-deployment.html) to learn more about shipping your app to production.
 
-[Next Steps >](/guides/quick-start#next-steps)
-
+<LinkButton
+href="/guides/quick-start#next-steps"
+icon="right-arrow"
+iconPlacement="start"
+variant="secondary"
+>
+Next Steps
+</LinkButton>
 ---
 
 ## Using Vue from CDN​
@@ -219,7 +227,9 @@ The above link loads the _global build_ of `Vue`, where all top-level APIs are e
 ### Using the ES Module Build​
 Throughout the rest of the documentation, we will be primarily using [ES modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) syntax. 
 Most modern browsers now support ES modules natively, so we can use Vue from a CDN via native ES modules like this:
-```html
+<Code
+lang="html"
+code={`
 <div id="app">{{ message }}</div>
 
 <script type="module">
@@ -234,7 +244,8 @@ Most modern browsers now support ES modules natively, so we can use Vue from a C
     }
   }).mount('#app')
 </script>
-```
+`}
+/>
 
 ### Enabling Import maps
 In the above example, you are importing from the full CDN URL, but in the rest of the documentation you will see code like this:
@@ -266,8 +277,14 @@ you can teach the browser where to locate the `vue` import by using [Import Maps
   }).mount("#app");
 </script>
 ```
-
-[CodePen Demo >](https://codepen.io/vuejs-examples/pen/YzRyRYM)
+<LinkButton
+href="https://codepen.io/vuejs-examples/pen/YzRyRYM"
+icon="external"
+iconPlacement="start"
+variant="secondary"
+>
+CodePen Demo
+</LinkButton>
 
 You can also add entries for other dependencies to the import map - but make sure they point to the ES modules version of the library you intend to use.
 
