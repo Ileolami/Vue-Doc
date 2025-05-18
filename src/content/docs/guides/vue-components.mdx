@@ -3,6 +3,7 @@ title: Vue Components
 description: Learn about Vue components
 ---
 import { Icon, LinkButton } from "@astrojs/starlight/components";
+import { Quiz, QuizOption } from 'starlight-videos/components'
 
 Vue components are components that contain HTML, JS, and CSS of in a single file.
 
@@ -139,3 +140,11 @@ If you are new to Vue, here's our general recommendation:
 You don't have to commit to only one style during the learning phase. The rest of the documentation will provide code samples in both styles where applicable, and you can toggle between them at any time using the **API Preference switches** at the top of the left sidebar.
 
 ---
+
+## Quiz
+<Quiz title="What is the difference between the Options API and Composition API?">
+  <QuizOption>The Options API is more beginner-friendly, while the Composition API is more free-form.</QuizOption>
+  <QuizOption>The Options API is more powerful, while the Composition API is more beginner-friendly.</QuizOption>
+  <QuizOption correct>In Options API, the component's logic is defined using an object of options, while in Composition API, the component's logic is defined using imported API functions.</QuizOption>
+  <QuizOption>The Options API is more free-form, while the Composition API is more beginner-friendly.</QuizOption>
+</Quiz>

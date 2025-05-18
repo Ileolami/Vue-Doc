@@ -3,27 +3,28 @@ title: Component Registration
 description: Learn how to register components in Vue.js
 ---
 
-import { Aside } from "@astrojs/starlight/components";
+import { Aside, Icon, Badge, Code, LinkButton } from "@astrojs/starlight/components";
+import { List, Quiz, QuizOption } from 'starlight-videos/components'
 
-<Aside type="note" title="Prerequisites">
-  - Familiarity with [Component Basics](https://vuejs.org/guide/essentials/component-basics.html)
-</Aside>
+<List title="Prerequisites" icon="open-book">
+- Familiarity with [Component Basics](https://vuejs.org/guide/essentials/component-basics.html)
 
-<iframe 
-  width="640" 
-  height="360" 
-  src="https://vueschool.io/lessons/vue-3-global-vs-local-vue-components?friend=vuejs&embed=1" 
-  title="Vue 3 Global vs Local Components" 
-  frameborder="0" 
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-  allowfullscreen>
-</iframe>
+</List>
+---
 
 A Vue components need to be **registered** so that Vue can know where to locate their implementation when they are encountered in a template. There are two ways to register components:
 
 - **Global Registration**
 - **Local Registration**
 
+<LinkButton
+href="https://vueschool.io/lessons/vue-3-global-vs-local-vue-components?friend=vuejs"
+icon="seti:video"
+iconPlacement="start"
+variant="secondary"
+>
+Watch a free Vue School lesson on component registration
+</LinkButton>
 ---
 
 ## Global Registration
@@ -133,3 +134,20 @@ Throughout the guide, you have been using PascalCase names when registering comp
 This is the recommended style when working with SFC or string templates. However, as discussed in [in-DOM Template Parsing Caveats](https://vuejs.org/guide/essentials/component-basics.html#in-dom-template-parsing-caveats), PascalCase tags are not usable in in-DOM templates.
 
 Luckily, Vue supports resolving kebab-case tags to components registered using PascalCase. This means a component registered as `MyComponent` can be referenced inside a Vue template (or inside an HTML element rendered by Vue) via both `<MyComponent>` and `<my-component>`. This allows us to use the same JavaScript component registration code regardless of template source.
+
+---
+
+## Quiz
+<Quiz title="1. Which of the following is true about component registration?" multiple>
+  <QuizOption correct>Components can be registered globally or locally</QuizOption>
+  <QuizOption correct>Global registration makes a component available globally in your application</QuizOption>
+  <QuizOption>Local registration is not possible in Vue</QuizOption>
+  <QuizOption correct>Local registration scopes the availability of the registered components to the current component only</QuizOption>
+</Quiz>
+
+<Quiz title="2. Which of the following is true about local registration?" multiple>
+  <QuizOption correct>Local registration is more tree-shaking friendly than global registration</QuizOption>
+  <QuizOption>Local registration is not tree-shaking friendly</QuizOption>
+  <QuizOption correct>Local registration makes dependency relationships more explicit</QuizOption>
+  <QuizOption>Local registration makes dependency relationships less explicit compare to global registration</QuizOption>
+</Quiz>

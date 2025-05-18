@@ -15,6 +15,7 @@ import {
   Steps,
   LinkButton
 } from "@astrojs/starlight/components";
+import { Quiz, QuizOption } from 'starlight-videos/components'
 
 ## Try Vue Online​
 
@@ -341,6 +342,14 @@ You may have noticed that the imported component's template is inlined as a Java
 If you are using VS Code, you can install the [es6-string-html](https://marketplace.visualstudio.com/items?itemName=Tobermory.es6-string-html) extension and prefix the strings with a `/*html*/` comment to get syntax highlighting for them.
 
 ---
+
+## Quiz
+<Quiz title="What is the difference between the global and ES module build of Vue?">
+  <QuizOption>The global build is used for production, while the ES module build is used for development.</QuizOption>
+  <QuizOption correct>The global build exposes all top-level APIs as properties on the global Vue object, while the ES module build does not.</QuizOption>
+  <QuizOption>The global build is used for server-side rendering, while the ES module build is used for client-side rendering.</QuizOption>
+  <QuizOption>The global build is used for single-file components, while the ES module build is used for plain JavaScript files.</QuizOption>
+</Quiz>
 
 ## Next Steps​
 

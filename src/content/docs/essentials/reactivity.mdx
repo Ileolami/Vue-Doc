@@ -4,6 +4,7 @@ description: Learn the basics of reactivity in Vue
 ---
 
 import { Aside, Badge, LinkButton, Code } from "@astrojs/starlight/components";
+import { Quiz, QuizOption } from 'starlight-videos/components'
 
 <Aside type="note" title="API Preference">
   This page and many other chapters later in the guide contain different content
@@ -55,7 +56,9 @@ It is possible to add a new property directly to `this` without including it in 
 Vue uses a `$` prefix when exposing its own built-in APIs via the component instance. It also reserves the prefix `_` for internal properties. You should avoid using names for top-level `data` properties that start with either of these characters.
 
 ## Reactive Proxy vs. Original​
-In Vue 3, data is made reactive by leveraging [JavaScript Proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy). Users coming from Vue 2 should be aware of the following edge case:
+<Aside type="note" title="Vue 2 users">
+In Vue 3, data is made reactive by leveraging [JavaScript Proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy).
+</Aside>
 
 <Code
 lang="js"
@@ -87,10 +90,10 @@ When you access `this.someObject` after assigning it, the value is a reactive pr
   iconPlacement="start"
   variant="secondary"
 >
-  Watch a free video lesson on Vue School
+  Methods in Vue 3
 </LinkButton>
 
-To add methods to a component instance we use the `methods` option. This should be an object containing the desired methods:
+`methods` option are used to declare methods on a component instance. This should be an object containing the desired methods:
 
 <Code
 lang="js"
@@ -130,7 +133,7 @@ export default {
 }`}
 />
 
-Just like all other properties of the component instance, the `methods` are accessible from within the component's template. Inside a template they are most commonly used as event listeners:
+Just like all other properties of the component instance, the `methods` are accessible from within the component's template. They are commonly used as event listeners inside templates:
 
 <Code
 lang="html"
@@ -199,7 +202,7 @@ export default {
 />
 
 ### Stateful Methods​
-In some cases, we may need to dynamically create a method function, for example creating a debounced event handler:
+In some cases, you may need to dynamically create a method function, for example creating a debounced event handler:
 
 <Code
 lang="js"
@@ -241,3 +244,22 @@ export default {
 }`}
 />
 
+## Quiz
+<Quiz title="1. Which of the following is true about reactive state in Vue?" multiple>
+  <QuizOption correct>Reactive state is declared using the `data` option in the Options API</QuizOption>
+  <QuizOption>Reactive state is declared using the `state` option in the Options API</QuizOption>
+  <QuizOption>Reactive state is declared using the `reactive` function in the Composition API</QuizOption>
+  <QuizOption correct>In Vue 3, data is made reactive by leveraging JavaScript ProxiesI</QuizOption>
+</Quiz>
+
+<Quiz title="2. Which of the following is true?" multiple>
+  <QuizOption>Methods are declared using the `functions` option in the Options API</QuizOption>
+  <QuizOption>Methods are declared using the `method` function in the Composition API</QuizOption>
+  <QuizOption correct>Methods are declared using the `methods` option in the Options API</QuizOption>
+  <QuizOption correct>State is deeply reactive by default</QuizOption>
+</Quiz>
+
+<Quiz title="3. Which of the following is true?">
+  <QuizOption correct>When you mutate reactive state, the DOM is updated automatically</QuizOption>
+  <QuizOption>If multiple component instances share the same function, they won't interfere with one another</QuizOption>
+</Quiz>

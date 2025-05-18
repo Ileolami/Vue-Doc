@@ -2,10 +2,11 @@
 title: Class and Style Bindings
 description: Binding HTML classes and inline styles to elements in Vue.js
 ---
-import { Aside, Badge, Code, TabItem, Tabs, Icon, LinkButton } from "@astrojs/starlight/components";
+import { TabItem, Tabs, Code, LinkButton } from "@astrojs/starlight/components";
+import { Quiz, QuizOption, List } from 'starlight-videos/components'
 
 A common need for data binding is manipulating an element's class list and inline styles. 
-Since `class` and `style` are both attributes, we can use `v-bind` to assign them a string value dynamically, much like with other attributes. 
+Since `class` and `style` are both attributes, you can use `v-bind` to assign them a string value dynamically, much like with other attributes. 
 However, trying to generate those values using string concatenation can be annoying and error-prone. 
 For this reason, Vue provides special enhancements when `v-bind` is used with `class` and `style`. 
 In addition to strings, the expressions can also evaluate to `objects` or `arrays`.
@@ -146,10 +147,11 @@ That's why it's also possible to use the object syntax inside arrays:
 
 ### With Components​
 
-<Aside type="note" title="Prerequisites">
+<List title="Prerequisites" icon="open-book">
 - Basic understanding of [components](https://vuejs.org/guide/essentials/component-basics.html). 
 _Feel free to skip it and come back later._
-</Aside>
+</List>
+
 
 When you use the `class` attribute on a custom component, those classes will be added to the component's root element. Existing classes on that element will not be overwritten.
 
@@ -303,3 +305,20 @@ You can provide an array of multiple (prefixed) values to a style property, for 
   code={`<div :style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></div>`}
   />
 This will only render the last value in the array which the browser supports. In this example, it will render `display: flex` for browsers that support the unprefixed version of flexbox.
+
+## Quiz
+
+<Quiz title="1. The major benefit of using `v-bind` with `class` and `style` is?" multiple>
+  <QuizOption correct>It allows you to dynamically toggle classes</QuizOption>
+  <QuizOption correct>It allows you to bind to an object</QuizOption>
+  <QuizOption correct>It allows you to bind to an array</QuizOption>
+  <QuizOption>It allows you to bind to a computed property</QuizOption>
+  <QuizOption >All of the above</QuizOption>
+</Quiz>
+
+<Quiz title="2. Which of the following is true about `v-bind` with `class` and `style`?">
+  <QuizOption>`v-bind` is only needed when binding to `class`</QuizOption>
+  <QuizOption correct>`v-bind` is not needed when binding to `class` and `style`</QuizOption>
+  <QuizOption>`v-bind` is only needed when binding to `style`</QuizOption>
+  <QuizOption>`v-bind` is needed when binding to both `class` and `style`</QuizOption>
+</Quiz>

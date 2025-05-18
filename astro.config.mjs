@@ -4,6 +4,7 @@ import starlight from "@astrojs/starlight";
 import react from "@astrojs/react";
 import liveCode from 'astro-live-code'
 import vue from "@astrojs/vue";
+import starlightVideos from 'starlight-videos'
 // https://astro.build/config
 export default defineConfig({
     i18n: {
@@ -11,6 +12,7 @@ export default defineConfig({
     defaultLocale: "en",
   },
   integrations: [
+    starlightVideos(),
     react({
       include: ['**/react/*', '**/*.react.*'],
     }),

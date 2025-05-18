@@ -1,0 +1,179 @@
+---
+title: Plugins
+description: Learn how to use plugins in Vue.js
+---
+
+import { Aside, Code, LinkButton, Tabs, TabItem, Card, Steps, LinkCard } from "@astrojs/starlight/components";
+import { Quiz, QuizOption } from 'starlight-videos/components'
+
+## Introduction
+
+Plugins are self-contained code that usually add app-level functionality to Vue. This is how you install a plugin:
+
+<Code
+lang="js"
+code={`import { createApp } from 'vue'
+
+const app = createApp({})
+
+app.use(myPlugin, {
+  /* optional options */
+})
+`}
+/>
+
+A plugin is defined as either an object that exposes an `install()` method, or simply a function that acts as the install function itself. The install function receives the [application instance](https://vuejs.org/api/application.html) as its first argument, and an optional second argument containing options passed to `app.use()`:
+
+<Code
+lang="js"
+code={`const myPlugin = {
+  install(app, options) {
+    // configure plugin with app
+  }
+}
+`}
+/>
+
+There is no strictly defined scope for a plugin, but common scenarios where plugins are useful include:
+
+1. Register one or more global components or custom directives with [`app.component()`](https://vuejs.org/api/application.html#app-component) and [`app.directive()`](https://vuejs.org/api/application.html#app-directive).
+
+2. Make a resource [injectable](https://vuejs.org/guide/components/provide-inject.html) throughout the app by calling [`app.provide()`](https://vuejs.org/api/application.html#app-provide).
+
+3. Add some global instance properties or methods by attaching them to [`app.config.globalProperties`](https://vuejs.org/api/application.html#app-config-globalproperties).
+
+4. A library that needs to perform some combination of the above (e.g. [vue-router](https://github.com/vuejs/vue-router-next)).
+
+## Writing a Plugin​
+In order to better understand how to create your own Vue.js plugins, we will create a very simplified version of a plugin that displays `i18n` (short for [Internationalization](https://en.wikipedia.org/wiki/Internationalization_and_localization)) strings.
+
+Let's begin by setting up the plugin object. It is recommended to create it in a separate file and export it, as shown below to keep the logic contained and separate.
+
+<Steps>
+1. Create a new file `plugins/i18n.js` 
+2. Add the following code to the file:
+    ```js
+        // plugins/i18n.js
+        export default {
+        install: (app, options) => {
+            // Plugin code goes here
+        }
+        }
+    ```
+3. Create a translation function,
+   This function will receive a dot-delimited `key` string, which you will use to look up the translated string in the user-provided options. This is the intended usage in templates:
+    ```html
+     <h1>{{ $translate('greetings.hello') }}</h1>
+     ``` 
+
+    Since this function should be globally available in all templates, you will make it so by attaching it to app.config.globalProperties in our plugin:
+   <Code
+    lang="js"
+    mark={[4,5,6,7,8,9,10,11]}
+    code={`// plugins/i18n.js
+        export default {
+        install: (app, options) => {
+            // inject a globally available $translate() method
+            app.config.globalProperties.$translate = (key) => {
+            // retrieve a nested property in options
+            // using key as the path
+            return key.split('.').reduce((o, i) => {
+                if (o) return o[i]
+            }, options)
+            }
+        }
+        }
+     `}
+    />
+   
+   The `$translate` function will take a string such as greetings.hello, look inside the user provided configuration and return the translated value.
+
+4. The object containing the translated keys should be passed to the plugin during installation via additional parameters to `app.use()`:
+    <Code
+     lang="js"
+     code={`import i18nPlugin from './plugins/i18n'
+
+    app.use(i18nPlugin, {
+    greetings: {
+        hello: 'Bonjour!'
+    }
+    })
+     `}
+    />
+</Steps>
+Now, the initial expression `$translate('greetings.hello')` will be replaced by `Bonjour!` at runtime.
+<LinkButton
+href="/typescript/options-api#augmenting-global-properties"
+icon="seti:tsconfig"
+iconPlacement="start"
+variant="secondary"
+>
+See also: Augmenting Global Properties
+</LinkButton>
+
+<Aside type="tip">
+Use global properties scarcely, since it can quickly become confusing if too many global properties injected by different plugins are used throughout an app.
+</Aside>
+
+### Provide / Inject with Plugins​
+Plugins also allow us to use `provide` to give plugin users access to a function or attribute. For example, you can allow the application to have access to the `options` parameter to be able to use the translations object.
+
+<Code
+lang="js"
+code={`// plugins/i18n.js
+export default {
+  install: (app, options) => {
+    app.provide('i18n', options)
+  }
+}
+`}
+/>
+
+The plugin users can then access the translations object via the `inject` option:
+
+<Code
+lang="js"
+code={`// plugins/i18n.js
+export default {
+  install: (app, options) => {
+    app.provide('i18n', options)
+  }
+}
+`}
+/>
+
+Plugin users will now be able to inject the plugin options into their components using the `i18n`  key:
+
+<Code
+lang="js"
+code={`export default {
+  inject: ['i18n'],
+  created() {
+    console.log(this.i18n.greetings.hello)
+  }
+}
+`}
+/>
+
+
+<LinkCard
+title="Bundle for NPM​"
+description="If you want to build and publish your plugin for others to use, see Vite's section on Library Mode."
+href="https://vitejs.dev/guide/build.html#library-mode"
+/>
+
+## Quiz
+<Quiz title="1. What are the two ways to define a Vue plugin?" multiple>
+  <QuizOption correct>As an object with an `install()` method</QuizOption>
+  <QuizOption correct>As a function that acts as the install function itself</QuizOption>
+  <QuizOption>As a class with a `setup()` method</QuizOption>
+  <QuizOption>As a Vue component with special properties</QuizOption>
+</Quiz>
+
+<Quiz title="2. How can plugins make functionality available throughout an application?" multiple>
+  <QuizOption correct>By registering global components with `app.component()`</QuizOption>
+  <QuizOption correct>By adding global properties to `app.config.globalProperties`</QuizOption>
+  <QuizOption correct>By making resources injectable with `app.provide()`</QuizOption>
+  <QuizOption>By modifying the Vue prototype directly</QuizOption>
+</Quiz>
+

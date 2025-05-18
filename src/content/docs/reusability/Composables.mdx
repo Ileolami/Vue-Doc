@@ -6,11 +6,9 @@ description: Learn how to use composables in Vue.js
 import { Aside, Badge, Code, Tabs, TabItem, LinkButton} from "@astrojs/starlight/components";
 import MousePosition from '../../../components/MousePosition.vue';
 
-<Aside type="note">
-  This section assumes you are familiar with the Composition API.  
-  If you have only used the Options API so far, switch your API Preference to "Composition API" (using the toggle at the top of the left sidebar),
-  <img src="/public/option-API-btn.png" alt="API Preference toggle" width="400" style="display:inline; vertical-align:middle;" />
-  and review the [Reactivity Fundamentals](/essentials/reactivity) and [Lifecycle Hooks](https://vuejs.org/guide/essentials/lifecycle.html) chapters before continuing.
+<Aside type="note" title="Prerequisites">
+  - Familiarity with the Composition API.
+  - Familiarity with the [Reactivity Fundamentals](/essentials/reactivity) and [Lifecycle Hooks](https://vuejs.org/guide/essentials/lifecycle.html) chapters.  
 </Aside>
 
 ---
@@ -21,6 +19,12 @@ In the context of Vue applications, a **composable** is a function that leverage
 When building frontend applications, logic are mostly resued for common tasks. For example, when you need to format dates in many places, you can create a reusable function for that. This formatter function compress **stateless logic**- it takes some input and immediately returns expected output. There are many libraries out there for reusing stateless logic - for example, [lodash](https://lodash.com/) and [date-fns](https://date-fns.org/), which you may have heard of.
 
 By contrast, stateful logic involves managing state that changes over time. A simple example would be tracking the current position of the mouse on a page. In real-world scenarios, it could also be more complex logic such as touch gestures or connection status to a database.
+
+<Aside type="tip" title="How To Switch To Composition API">
+  So far you have being using Options API, To switch to Composition API,
+  - Click on the "API Preference" toggle at the top of the left sidebar.
+    <img src="/option-API-btn.png" alt="API Preference toggle" width="400" style="display:inline; vertical-align:middle;" />
+</Aside>
 
 ---
 

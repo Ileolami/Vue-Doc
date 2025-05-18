@@ -4,10 +4,13 @@ description: Learn how to use props in Vue.js
 ---
 
 import { Aside, Icon, Badge } from "@astrojs/starlight/components";
+import { Quiz, QuizOption, List } from 'starlight-videos/components'
 
-<Aside type="note" title="Prerequisites">
-  - Familiarity with [Component Basics](https://vuejs.org/guide/essentials/component-basics.html)
-</Aside>
+<List title="Prerequisites" icon="open-book">
+- Familiarity with [Component Basics](https://vuejs.org/guide/essentials/component-basics.html)
+</List>
+---
+
 
 ## Props Declaration
 
@@ -444,3 +447,20 @@ defineProps({
   disabled: [String, Boolean]
 })
 ```
+
+---
+
+## Quiz
+<Quiz title="1. Which of the following is true about props in Vue?" multiple>
+  <QuizOption correct>Props are used to pass data from a parent component to a child component</QuizOption>
+  <QuizOption correct>Props can be of any type</QuizOption>
+  <QuizOption>Props can be mutated in the child component</QuizOption>
+  <QuizOption correct>Props are read-only in the child component</QuizOption>
+</Quiz>
+
+<Quiz title="2. Which of the following is true about prop validation in Vue?" multiple>
+  <QuizOption correct>Prop validation is used to specify requirements for props</QuizOption>
+  <QuizOption>Prop validation can be used to specify the default value of a prop</QuizOption>
+  <QuizOption correct>Prop validation can be used to specify the type of a prop</QuizOption>
+  <QuizOption correct>Prop validation can be used to specify a custom validator function</QuizOption>
+</Quiz>
