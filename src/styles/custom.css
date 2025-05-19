@@ -13,7 +13,7 @@
   --sl-color-gray-5: #383838;
   --sl-color-gray-6: #272727;
   --sl-color-black: #181818;
-  font-weight: 500;
+  font-weight: 400;
 
 }
 /* Light mode colors. */
@@ -30,7 +30,7 @@
   --sl-color-gray-6: #eeeeee;
   --sl-color-gray-7: #f6f6f6;
   --sl-color-black: #dce6ddd8;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 a {

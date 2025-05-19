@@ -4,6 +4,7 @@ description: Learn how to use fallthrough attributes in Vue.js
 ---
 
 import { Aside } from '@astrojs/starlight/components'
+import { Quiz, QuizOption } from 'starlight-videos/components'
 
 ## Attribute Inheritance​
 A "fallthrough attribute" is an attribute or `v-on` event listener that is passed to a component, but is not explicitly declared in the receiving component's [props](/components/props) or [emits](components/events#declaring-emitted-events). Common examples of this include `class`, `style`, and `id` attributes.
@@ -158,3 +159,18 @@ export default {
 <Aside type="note">
 Note that although the `attrs` object here always reflects the latest fallthrough attributes, it isn't reactive (for performance reasons). You cannot use watchers to observe its changes. If you need reactivity, use a prop. Alternatively, you can use `onUpdated()` to perform side effects with the latest `attrs` on each update.
 </Aside>
+
+## Quiz
+<Quiz title="1. What is a fallthrough attribute in Vue?">
+  <QuizOption>It is an attribute that is passed to a component, but is not explicitly declared in the receiving component's template</QuizOption>
+  <QuizOption correct>It is an attribute that is passed to a component, but is not explicitly declared in the receiving component's props or emits</QuizOption>
+  <QuizOption>It is an attribute that is passed to a component, but is not explicitly declared in the receiving component's data</QuizOption>
+  <QuizOption>It is an attribute that is passed to a component, but is not explicitly declared in the receiving component's methods</QuizOption>
+</Quiz>
+
+<Quiz title="2. Which of the following is true about fallthrough attributes in Vue?" multiple>
+  <QuizOption correct>They are not automatically added to the root element's attributes if the component renders multiple root elements</QuizOption>  
+  <QuizOption>They are automatically added to all elements' attributes if the component renders multiple root elements</QuizOption>
+  <QuizOption>They are not automatically added to any element's attributes if the component renders multiple root elements</QuizOption>
+  <QuizOption correct>They are automatically added to the root element's attributes if the component renders a single root element</QuizOption>
+</Quiz>

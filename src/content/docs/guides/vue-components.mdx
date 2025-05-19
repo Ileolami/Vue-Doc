@@ -2,15 +2,19 @@
 title: Vue Components
 description: Learn about Vue components
 ---
-import { Icon, LinkButton } from "@astrojs/starlight/components";
+import { Icon, LinkButton, Code, Tabs, TabItem } from "@astrojs/starlight/components";
 import { Quiz, QuizOption } from 'starlight-videos/components'
+import Counter from "../../../components/counter.jsx";
 
 Vue components are components that contain HTML, JS, and CSS of in a single file.
 
 ## Single-File Components​
   In most build-tool-enabled Vue projects, components are written using a special HTML-like file format called a **Single-File Component (SFC)**(also known as `*.vue` files). As the name implies, a Vue SFC bundles the component’s template (HTML), logic (JavaScript), and styles (CSS) into a single file. Below is the same example rewritten using the SFC format:
-
-    ```vue live props={{ "client:load": true }}
+  <Tabs>
+    <TabItem label="Code">
+      <Code
+        lang="vue"
+        code={`
     <script setup>
     import { ref } from "vue";
     const count = ref(0);
@@ -25,7 +29,14 @@ Vue components are components that contain HTML, JS, and CSS of in a single file
       font-weight: bold;
     }
     </style>
-    ```
+        `}
+      />
+    </TabItem>
+    <TabItem label="Preview" default>
+      <Counter client:load />
+    </TabItem>
+  </Tabs>
+
 
     SFC is a defining feature of Vue and is the recommended way to author Vue components if your use case warrants a build setup. 
     You can learn more about [Single-File Components in the Scaling Up section](/scaling-up/sfc).
@@ -35,40 +46,46 @@ You can create Vue components in two different API styles: **Options API** and *
 
 ## Options API​
 When using Options API, component's logic are define using an object of options such as `data`, `methods`, and `mounted`. The properties defined in this object are accessible via `this` inside functions, where this refers to the component instance:
-
-
-    ```vue live props={{ "client:load": true }}
-      <script>
-        export default {
-          // Properties returned from data() become reactive state
-          // and will be exposed on `this`.
-          data() {
-            return {
-              count: 0,
-            };
-          },
-
-          // Methods are functions that mutate state and trigger updates.
-          // They can be bound as event handlers in templates.
-          methods: {
-            increment() {
-              this.count++;
-            },
-          },
-
-          // Lifecycle hooks are called at different stages
-          // of a component's lifecycle.
-          // This function will be called when the component is mounted.
-          mounted() {
-            console.log(`The initial count is ${this.count}.`);
-          },
+<Tabs>
+  <TabItem label="Code">
+    ```vue
+    <script>
+    export default {
+      // Properties returned from data() become reactive state
+      // and will be exposed on `this`.
+      data() {
+        return {
+          count: 0,
         };
-      </script>
+      },
 
-      <template>
-        <button @click="increment">Count is: {{ count }}</button>
-      </template>
+      // Methods are functions that mutate state and trigger updates.
+      // They can be bound as event handlers in templates.
+      methods: {
+        increment() {
+          this.count++;
+        },
+      },
+
+      // Lifecycle hooks are called at different stages
+      // of a component's lifecycle.
+      // This function will be called when the component is mounted.
+      mounted() {
+        console.log(`The initial count is ${this.count}.`);
+      },
+    };
+  </script>
+
+  <template>
+    <button @click="increment">Count is: {{ count }}</button>
+  </template>
     ```
+    </TabItem>
+    <TabItem label="Preview" default>
+      <Counter client:load />
+    </TabItem>
+  </Tabs>
+
 <LinkButton
 href="https://play.vuejs.org/#eNptkMFqxCAQhl9lkB522ZL0HNKlpa/Qo4e1ZpLIGhUdl5bgu9es2eSyIMio833zO7NP56pbRNawNkivHJ25wV9nPUGHvYiaYOYGoK7Bo5CkbgiBBOFy2AkSh2N5APmeojePCkDaaKiBt1KnZUuv3Ky0PppMsyYAjYJgigu0oEGYDsirYUAP0WULhqVrQhptF5qHQhnpcUJD+wyQaSpUd/Xp9NysVY/yT2qE0dprIS/vsds5Mg9mNVbaDofL94jZpUgJXUKBCvAy76ZUXY53CTd5tfX2k7kgnJzOCXIF0P5EImvgQ2olr++cbRE4O3+t6JxvXj0ptXVpye1tvbFY+ge/NJZt"
 icon="seti:video"
@@ -84,9 +101,10 @@ When using Composition API, a component's logic is defined using imported API fu
 The `setup` attribute Vue signals to apply compile-time transformations, enabling a more concise syntax with reduced boilerplate. 
 For example, any imports, top-level variables, or functions declared in a `<script setup>` block are automatically exposed to the template without needing to return them manually.
 
-    Below is the same component, retaining the original template, but rewritten using the Composition API and `<script setup>`:
-
-    ```vue live props={{ "client:load": true }}
+Below is the same component, retaining the original template, but rewritten using the Composition API and `<script setup>`:
+<Tabs>
+  <TabItem label="Code">
+    ```vue 
     <script setup>
     import { ref, onMounted } from "vue";
 
@@ -108,6 +126,11 @@ For example, any imports, top-level variables, or functions declared in a `<scri
       <button @click="increment">Count is: {{ count }}</button>
     </template>
     ```
+    </TabItem>
+    <TabItem label="Preview" default>
+      <Counter client:load />
+    </TabItem>
+</Tabs>
 <LinkButton
 href="https://play.vuejs.org/#eNpNkMFqwzAQRH9lMYU4pNg9Bye09NxbjzrEVda2iLwS0spQjP69a+yYHnRYad7MaOfiw/tqSliciybqYDxDRE7+qsiM3gWGGQJ2r+DoyyVivEOGLrgRDkIdFCmqa1G0ms2EELllVKQdRQa9AHBZ+PLtuEm7RCKVd+ChZRjTQqwctHQHDqbvMUDyd7mKip4AGNIBRyQujzArgtW/mlqb8HRSlLcEazrUv9oiDM49xGGvXgp5uT5his5iZV1f3r4HFHvDprVbaxPhZf4XkKub/CDLaep1T7IhGRhHb6WoTADNT2KWpu/aGv24qGKvrIrr5+Z7hnneQnJu6hURvKl3ryL/ARrVkuI="
 icon="seti:video"

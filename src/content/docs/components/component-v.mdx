@@ -4,6 +4,7 @@ description: Learn how to use the v-model directive in Vue.js
 ---
 
 import { FileTree, Icon, Badge, Aside, LinkButton } from '@astrojs/starlight/components';
+import { Quiz, QuizOption } from 'starlight-videos/components'
 
 ## Basic Usage​
 `v-model` can be used on a component to implement a two-way binding.
@@ -348,3 +349,18 @@ console.log(lastNameModifiers) // { uppercase: true }
      ```
   
 </FileTree>
+
+## Quiz
+<Quiz title="1. Which of the following is true about v-model in Vue?" multiple>
+  <QuizOption correct>v-model is used to create two-way data bindings</QuizOption>
+  <QuizOption>v-model is used to pass data from a parent component to a child component</QuizOption>
+  <QuizOption correct>v-model is a directive</QuizOption>
+  <QuizOption correct>v-model is used to pass data from a child component to a parent component</QuizOption>
+</Quiz>
+
+<Quiz title="2. Which of the following is true about v-model modifiers in Vue?" multiple>
+  <QuizOption correct>v-model modifiers can be used to implement custom behavior for the v-model binding</QuizOption>
+  <QuizOption>v-model modifiers can be used to pass data from a parent component to a child component</QuizOption>  
+  <QuizOption correct>v-model modifiers can be used to modify the value of the v-model binding</QuizOption>
+  <QuizOption>v-model modifiers can be used to pass data from a child component to a parent component</QuizOption>
+</Quiz>

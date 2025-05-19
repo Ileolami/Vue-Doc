@@ -4,10 +4,11 @@ description: Learn how to use events in Vue.js
 ---
 
 import { Aside, Icon, Badge } from "@astrojs/starlight/components";
+import { Quiz, QuizOption, List } from 'starlight-videos/components'
 
-<Aside type="note" title="Prerequisites">
-  - Familiarity with [Component Basics](https://vuejs.org/guide/essentials/component-basics.html)
-</Aside>
+<List title="Prerequisites" icon="open-book">
+- Familiarity with [Component Basics](https://vuejs.org/guide/essentials/component-basics.html)
+</List>
 
 ## Emitting and Listening to Events​
 A component can emit custom events directly in template expressions (e.g. in a `v-on` handler) using the built-in `$emit` method:
@@ -170,3 +171,18 @@ function submitForm(email, password) {
 }
 </script>
 ```
+## Quiz
+<Quiz title="1. What is the purpose of the `emits` option in a Vue component?" multiple>
+  <QuizOption correct>It allows the component to emit custom events</QuizOption>
+  <QuizOption>It is used to define the props that the component accepts</QuizOption>
+  <QuizOption>It is used to define the data that the component manages</QuizOption>
+  <QuizOption correct>It can be used to validate emitted events</QuizOption>
+</Quiz>
+
+<Quiz title="2. Which of the following is true about event arguments in Vue?" multiple>
+  <QuizOption correct>Event arguments can be passed to the `$emit` method</QuizOption>
+  <QuizOption correct>Event arguments can be accessed in the parent component's event listener</QuizOption>
+  <QuizOption>Event arguments can only be numbers or strings</QuizOption>
+  <QuizOption>Event arguments are automatically validated by Vue</QuizOption>
+  <QuizOption correct>Event arguments can be of any type</QuizOption>
+</Quiz>
