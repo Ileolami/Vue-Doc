@@ -70,11 +70,11 @@ export default defineConfig({
       {
         label: "Components In-Depth",
         items: [
-          {slug: "components/registration"},
-          {slug: "components/props"},
-          {slug: "components/events"},
-          {slug: "components/component-v"},
-          {slug: "components/fallthrough"},
+          {slug: "components-in-depth/registration"},
+          {slug: "components-in-depth/props"},
+          {slug: "components-in-depth/events"},
+          {slug: "components-in-depth/component-v"},
+          {slug: "components-in-depth/fallthrough"},
         ],
       },
       {
@@ -91,8 +91,8 @@ export default defineConfig({
           {slug: "built-in/transition"},
           {slug: "built-in/transition-group"},
           {slug: "built-in/keep-alive"},
-          {slug: "built-in/suspense"},
           {slug: "built-in/teleport"},
+          {slug: "built-in/suspense"},
         ],
       },
       {
