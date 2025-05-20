@@ -2,3 +2,142 @@
 title: Single-File Components
 description: Learn how to use Single-File Components in Vue
 ---
+
+import { Icon, LinkButton, Code, Tabs, TabItem, LinkCard } from "@astrojs/starlight/components";
+import { Quiz, QuizOption } from 'starlight-videos/components'
+import Greeting from "../../../components/sfc/greeting.vue"
+
+## Introduction​
+
+Vue Single-File Components (a.k.a. `*.vue` files, abbreviated as **SFC**) is a special file format that allows you to combine the template, logic, and styling of a Vue component in a single file. 
+Here's an example SFC:
+
+<Tabs>
+<TabItem label="Vue">
+ ```js
+ <script>
+export default {
+  data() {
+    return {
+      greeting: 'Hello World!'
+    }
+  }
+}
+</script>
+
+<template>
+  <p class="greeting">{{ greeting }}</p>
+</template>
+
+<style>
+.greeting {
+  color: red;
+  font-weight: bold;
+}
+</style>
+```
+</TabItem>
+<TabItem label="Preview">
+ <div class="preview">
+ <Greeting client:load/>
+ </div>
+</TabItem>
+</Tabs>
+
+As you can see, Vue SFC is a natural extension of the classic trio of HTML, CSS and JavaScript. The `<template>`, `<script>`, and `<style>` blocks combine and colocate the view, logic and styling of a component in the same file. 
+The full syntax is defined in the [SFC Syntax Specification](https://vuejs.org/api/sfc-spec.html).
+
+---
+
+## Why SFC
+
+While SFCs require a build step, there are numerous benefits in return:
+
+- Author modularized components using familiar HTML, CSS and JavaScript syntax
+- [Colocation of inherently coupled concerns](/scaling-up/sfc#what-about-separation-of-concerns)
+- Pre-compiled templates without runtime compilation cost
+- [Component-scoped CSS](https://vuejs.org/api/sfc-css-features.html)
+- [More ergonomic syntax when working with Composition API](https://vuejs.org/api/sfc-script-setup.html)
+- More compile-time optimizations by cross-analyzing template and script
+- [IDE support](/scaling-up/tooling#ide-support) with auto-completion and type-checking for template expressions
+- Out-of-the-box Hot-Module Replacement (HMR) support
+
+SFC is a defining feature of Vue as a framework, and is the recommended approach for using Vue in the following scenarios:
+- Single-Page Applications (SPA)
+- Static Site Generation (SSG)
+- Any non-trivial frontend where a build step can be justified for better development experience (DX).
+
+Although, there are might be some scenarios where SFCs can feel like overkill. This is why Vue can still be used via plain JavaScript without a build step. If you are just looking for enhancing largely static HTML with light interactions, you can also check out [petite-vue](https://github.com/vuejs/petite-vue), a 6 kB subset of Vue optimized for progressive enhancement.
+
+---
+
+## How It Works​
+Vue SFC is a framework-specific file format and must be pre-compiled by [@vue/compiler-sfc](https://github.com/vuejs/core/tree/main/packages/compiler-sfc) into standard JavaScript and CSS. A compiled SFC is a standard JavaScript (ES) module - which means with proper build setup you can import an SFC like a module:
+
+```js
+import MyComponent from './MyComponent.vue'
+
+export default {
+  components: {
+    MyComponent
+  }
+}
+```
+
+`<style>` tags inside SFCs are typically injected as native `<style>` tags during development to support hot updates. For production they can be extracted and merged into a single CSS file.
+
+<LinkCard
+href="https://play.vuejs.org/"
+title="Try Out"
+icon='external'
+description="Play with SFCs and learn how they are compiled"/>
+
+In actual projects, SFC compiler are integrate with a build tool such as [Vite](https://vitejs.dev/) or [Vue CLI](http://cli.vuejs.org/) (based on [webpack](https://webpack.js.org/)). 
+Vue also provides official scaffolding tools to get you started with SFCs as fast as possible. 
+<LinkButton href="/scaling-up/tooling" variant="secondary">
+Check out more details in the SFC Tooling section.
+</LinkButton>
+
+---
+
+## What About Separation of Concerns?​
+Some users coming from a traditional web development background may have the concern that SFCs are mixing different concerns in the same place - which HTML/CSS/JS were supposed to separate.
+
+To answer this question, it is important to note that **separation of concerns is not equal to the separation of file types**. The ultimate goal of engineering principles is to improve the maintainability of codebases. Separation of concerns, when applied dogmatically as separation of file types, does not help us reach that goal in the context of increasingly complex frontend applications.
+
+In modern UI development, we have found that instead of dividing the codebase into three huge layers that interweave with one another, it makes much more sense to divide them into loosely-coupled components and compose them. Inside a component, its template, logic, and styles are inherently coupled, and colocating them actually makes the component more cohesive and maintainable.
+
+Note even if you don't like the idea of Single-File Components, you can still leverage its hot-reloading and pre-compilation features by separating your JavaScript and CSS into separate files using [Src Imports](https://vuejs.org/api/sfc-spec.html#src-imports).
+
+---
+
+## Quiz 
+<Quiz title="What is a key benefit of using Vue Single-File Components (SFCs)?">
+  <QuizOption>
+    They require no build step at all
+  </QuizOption>
+  <QuizOption correct>
+    They colocate template, logic, and styles for better maintainability
+  </QuizOption>
+  <QuizOption>
+    They only support JavaScript logic
+  </QuizOption>
+  <QuizOption>
+    They prevent the use of scoped CSS
+  </QuizOption>
+</Quiz>
+
+<Quiz title="How does Vue recommend thinking about 'separation of concerns' in modern UI development?">
+  <QuizOption>
+    By strictly separating HTML, CSS, and JavaScript into different files
+  </QuizOption>
+  <QuizOption correct>
+    By dividing code into loosely-coupled components that colocate template, logic, and styles
+  </QuizOption>
+  <QuizOption>
+    By writing all code in a single global file
+  </QuizOption>
+  <QuizOption>
+    By avoiding the use of components altogether
+  </QuizOption>
+</Quiz>

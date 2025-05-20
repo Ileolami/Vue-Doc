@@ -148,3 +148,35 @@ homeh2 {
   border-radius: 5px;
   margin-left: 5px;
 }
+
+.preview{
+  padding: 1rem; 
+  background-color: black; 
+  border-radius: 0.5rem; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.sponsors {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Always two columns */
+  align-items: center;
+  justify-items: center;
+  background-color: rgba(69, 66, 66, 0.134);
+  border-radius: 0.5rem;
+}
+.sponsors h4{
+  text-align: center;
+}
+.sponsors img {
+  width: 100px;
+  height: 60px;
+  object-fit: contain;
+  padding: 8px;
+  transition: transform 0.2s;
+}
+.sponsors > a:first-child {
+  grid-column: 1 / -1;
+}
+.sponsors > a:hover {
+  transform: scale(1.08) rotate(-2deg);
+  background-color: #bfd6cc78;
+}
