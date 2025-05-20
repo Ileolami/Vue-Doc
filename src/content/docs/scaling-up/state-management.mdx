@@ -2,3 +2,259 @@
 title: State Management
 description: Learn how to manage state in Vue.js
 ---
+import {
+  Aside,
+  Tabs,
+  TabItem,
+  LinkCard,
+  CardGrid,
+  Badge,
+  Code,
+  Icon,
+  Steps,
+  LinkButton
+} from "@astrojs/starlight/components"; 
+
+import {Quiz, QuizOption, List} from 'starlight-videos/components'
+import App from "../../../components/state-management/App.vue"
+
+
+## What is State Management?
+
+Technically, every Vue component instance already "manages" its own reactive state. Take a simple counter component as an example:
+
+```js
+<script>
+export default {
+  // state
+  data() {
+    return {
+      count: 0
+    }
+  },
+  // actions
+  methods: {
+    increment() {
+      this.count++
+    }
+  }
+}
+</script>
+
+<!-- view -->
+<template>{{ count }}</template>
+````
+
+It is a self-contained unit with the following parts:
+
+- The **state**, the source of truth that drives our app;
+- The **view**, a declarative mapping of the state;
+- The **actions**, the possible ways the state could change in reaction to user inputs from the **view**.
+
+This is a simple representation of the concept of "one-way data flow":
+
+<div style={{ display: "flex", justifyContent: "center", alignItems: "center", margin: "2rem 0" }}>
+  <img
+    src="/state-management/state-flow.Cd6No79V.png"
+    width="320"
+    style={{ maxWidth: "100%", height: "auto", display: "block" }}
+    alt="State flow diagram"
+  />
+</div>
+
+However, the simplicity starts to break down when you have **multiple components that share a common state**:
+
+1. Multiple views may depend on the same piece of state.
+2. Actions from different views may need to mutate the same piece of state.
+For case one, a possible workaround is by "lifting" the shared state up to a common ancestor component, and then pass it down as props. However, this quickly gets tedious in component trees with deep hierarchies, leading to another problem known as [Prop Drilling](https://vuejs.org/guide/components/provide-inject.html#prop-drilling).
+
+For case two, we often find ourselves resorting to solutions such as reaching for direct parent / child instances via template refs, or trying to mutate and synchronize multiple copies of the state via emitted events. Both of these patterns are brittle and quickly lead to unmaintainable code.
+
+A simpler and more straightforward solution is to extract the shared state out of the components, and manage it in a global singleton. With this, our component tree becomes a big "view", and any component can access the state or trigger actions, no matter where they are in the tree!
+
+---
+
+## Simple State Management with Reactivity API​
+In Options API, reactive data is declared using the `data()` option. Internally, the object returned by `data()` is made reactive via the [`reactive()`](https://vuejs.org/api/reactivity-core.html#reactive) function, which is also available as a public API.
+
+If you have a piece of state that should be shared by multiple instances, you can use[`reactive()`](https://vuejs.org/api/reactivity-core.html#reactive) to create a reactive object, and then import it into multiple components:
+
+<Tabs>
+<TabItem label="store.js">
+```js
+// store.js
+import { reactive } from 'vue'
+
+export const store = reactive({
+  count: 0
+})
+```
+</TabItem>
+<TabItem label="ComponentB.vue">
+```js
+<!-- ComponentA.vue -->
+<script>
+import { store } from './store.js'
+
+export default {
+  data() {
+    return {
+      store
+    }
+  }
+}
+</script>
+
+<template>From A: {{ store.count }}</template>
+```
+</TabItem>
+<TabItem label="ComponentA.vue">
+```js
+<!-- ComponentB.vue -->
+<script>
+import { store } from './store.js'
+
+export default {
+  data() {
+    return {
+      store
+    }
+  }
+}
+</script>
+
+<template>From B: {{ store.count }}</template>
+```
+</TabItem>
+</Tabs>
+
+Now whenever the `store` object is mutated, both `<ComponentA>` and `<ComponentB>` will update their views automatically - we have a single source of truth now.
+
+However, this also means any component importing `store` can mutate it however they want:
+
+```js mark={2}
+<template>
+  <button @click="store.count++">
+    From B: {{ store.count }}
+  </button>
+</template>
+```
+
+While this works in simple cases, global state that can be arbitrarily mutated by any component is not going to be very maintainable in the long run. To ensure the state-mutating logic is centralized like the state itself, it is recommended to define methods on the store with names that express the intention of the actions:
+
+<Tabs>
+<TabItem label="store.js">
+```js mark={6,7,8}
+// store.js
+import { reactive } from 'vue'
+
+export const store = reactive({
+  count: 0,
+  increment() {
+    this.count++
+  }
+})
+```
+</TabItem>
+<TabItem label="Template">
+```js mark={2}
+<template>
+  <button @click="store.increment()">
+    From B: {{ store.count }}
+  </button>
+</template>
+```
+</TabItem>
+<TabItem label="Preview"><App client:load/></TabItem>
+</Tabs>
+
+<LinkButton
+    href="https://play.vuejs.org/#eNrdU8FqhDAU/JVHLruyi+lZ3FIt9Cu82JilaTWR5CkF8d8bE5O1u1so9FYQzAyTvJnRTKTo+3QcOMlIbpgWPT5WUnS90gjPyr4ll1jAWasOdim9UMum3a20vJWWqxSgkvzTyRt+rocWYVpYFoQm8wRsJh+viHLBcyXtk9No2ALkXd/WyC0CyDfW6RVTOiancQM5ku+x7nUxgUGlOcwxn8Ppu7HJ7udqaqz3SYikOQ5aBgT+OA9slt9kasToFnb5OiAqCU+sFezjVBHvRUimeWdT7JOKrFKAl8VvYatdI6RMDRJhdlPtWdQf5mdQP+SHdtyX/IftlH9pJyS1vcQ2NK8ZivFSiL8BsQmmpMG1s1NU79frYA1k8OD+/I3pUA6+CeNdHg6hmoTMX9pPSnk="
+    icon="seti:video"
+    iconPlacement="start"
+    variant="secondary"
+> 
+  Try It In Playground
+</LinkButton>
+
+:::tip
+Note the click handler uses `store.increment()` with parentheses - this is necessary to call the method with the proper `this` context since it's not a component method.
+:::
+
+Although here you are using a single reactive object as a store, you can also share reactive state created using other [Reactivity APIs](https://vuejs.org/api/reactivity-core.html) such as `ref()` or `computed()`, or even return global state from a [Composable](https://vuejs.org/guide/reusability/composables.html):
+
+```js
+import { ref } from 'vue'
+
+// global state, created in module scope
+const globalCount = ref(1)
+
+export function useCount() {
+  // local state, created per-component
+  const localCount = ref(1)
+
+  return {
+    globalCount,
+    localCount
+  }
+}
+```
+
+The fact that Vue's reactivity system is decoupled from the component model makes it extremely flexible.
+
+---
+
+## SSR Considerations​
+If you are building an application that leverages [Server-Side Rendering (SSR)](https://vuejs.org/guide/scaling-up/ssr.html), the above pattern can lead to issues due to the store being a singleton shared across multiple requests. 
+
+This is discussed in [more details](https://vuejs.org/guide/scaling-up/ssr.html#cross-request-state-pollution) in the SSR guide.
+
+---
+
+## Pinia​
+While our hand-rolled state management solution will suffice in simple scenarios, there are many more things to consider in large-scale production applications:
+
+- Stronger conventions for team collaboration
+- Integrating with the Vue DevTools, including timeline, in-component inspection, and time-travel debugging
+- Hot Module Replacement
+- Server-Side Rendering support
+
+[Pinia](https://pinia.vuejs.org/) is a state management library that implements all of the above. It is maintained by the Vue core team, and works with both Vue 2 and Vue 3.
+
+Existing users may be familiar with Vuex, the previous official state management library for Vue. With Pinia serving the same role in the ecosystem, [Vuex](https://vuex.vuejs.org/) is now in maintenance mode. It still works, but will no longer receive new features. It is recommended to use Pinia for new applications.
+
+Pinia started out as an exploration of what the next iteration of Vuex could look like, incorporating many ideas from core team discussions for Vuex 5. Eventually, we realized that Pinia already implements most of what we wanted in Vuex 5, and decided to make it the new recommendation instead.
+
+Compared to Vuex, Pinia provides a simpler API with less ceremony, offers Composition-API-style APIs, and most importantly, has solid type inference support when used with TypeScript.
+
+## Quiz
+
+<Quiz title="What is the recommended state management library for new Vue applications?">
+  <QuizOption>
+    Vuex
+  </QuizOption>
+  <QuizOption>
+    Redux
+  </QuizOption>
+  <QuizOption>
+    MobX
+  </QuizOption>
+  <QuizOption correct>
+    Pinia
+  </QuizOption>
+</Quiz>
+
+<Quiz title="Why is using a singleton store pattern problematic with Server-Side Rendering (SSR)?">
+  <QuizOption>
+    It increases the bundle size
+  </QuizOption>
+  <QuizOption correct>
+    It can cause cross-request state pollution by sharing state between users
+  </QuizOption>
+  <QuizOption>
+    It disables reactivity
+  </QuizOption>
+  <QuizOption>
+    It prevents hot module replacement
+  </QuizOption>
+</Quiz>
