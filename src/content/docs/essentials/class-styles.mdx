@@ -15,14 +15,25 @@ In addition to strings, the expressions can also evaluate to `objects` or `array
 
 ## Binding HTML Classes​
 
-<LinkButton
-  href="https://vueschool.io/lessons/dynamic-css-classes-with-vue-3?friend=vuejs"
-  variant="secondary"
-  icon="seti:video"
-  iconPlacement="start"
->
-Watch a free video lesson on Vue School
-</LinkButton>
+<div style={{ position: "relative", paddingBottom: "56.25%", height: 0, margin: "1.5rem 0" }}>
+  <iframe
+    src="https://player.vimeo.com/video/527885040?title=0&amp;byline=0&amp;portrait=0&amp;app_id=122963"
+    frameborder="0"
+    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+    allowfullscreen
+    style={{
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      borderRadius: "8px"
+    }}
+    title="10 Dynamic CSS classes with Vue"
+    data-ready="true"
+  ></iframe>
+</div>
+
 
 ### Binding to Objects​
 
@@ -276,10 +287,8 @@ Again, object style binding is often used in conjunction with computed propertie
   code={`<h1 style="color: red" :style="'font-size: 1em'">hello</h1>`}
   />
  </TabItem>
- <TabItem label="Rendered">
-  ```html live
-  <h1 style="color: red; font-size: 1em;">hello</h1>
-  ```
+ <TabItem label="Preview">
+  <div class="preview"><h1 style="color: red; font-size: 1em;">hello</h1></div>
  </TabItem>
 </Tabs>
 

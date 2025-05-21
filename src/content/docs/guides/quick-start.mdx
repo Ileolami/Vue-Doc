@@ -30,11 +30,10 @@ import { Quiz, QuizOption, List } from 'starlight-videos/components'
 
 ## Installation
 
-<Aside type="note" title="Prerequisites">
+<List title="Prerequisites" icon="open-book">
   - Familiarity with the command line 
-  - Install [Node.js](https://nodejs.org/)
-  version 18.3 or higher
-</Aside>
+  - Install [Node.js](https://nodejs.org/) version 18.3 or higher
+</List>
 
 In this section, you will learn how to create a Vue [Single Page Application](https://vuejs.org/guide/extras/ways-of-using-vue#single-page-application-spa) on your local machine.
 The created project will be using a build setup based on [Vite](https://vitejs.dev/), which will allow us to use Vue [Single-File Components (SFCs)](https://vuejs.org/guide/scaling-up/sfc).
@@ -203,7 +202,9 @@ Here we are use [unpkg](https://unpkg.com/), but you can also use any CDN that s
 
 The above link loads the _global build_ of `Vue`, where all top-level APIs are exposed as properties on the global Vue object. Here is a full example using the global build:
 
-```html live
+<Tabs>
+ <TabItem label="Vue">
+   ```html
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
 <div id="app">{{ message }}</div>
@@ -221,6 +222,12 @@ The above link loads the _global build_ of `Vue`, where all top-level APIs are e
   }).mount("#app");
 </script>
 ```
+ </TabItem>
+ <TabItem label="Preview">
+   <div class="preview"><p style="color:white">Hello Vue!</p></div>
+ </TabItem>
+</Tabs>
+
 
 <Aside type="tip" title="Tip">
   Many of the examples for Composition API throughout the guide will be using the `<script setup>` syntax, which requires build tools. If you intend to use Composition API without a build step, consult the usage of the [`setup()` option](https://vuejs.org/api/composition-api-setup.html).
@@ -229,7 +236,10 @@ The above link loads the _global build_ of `Vue`, where all top-level APIs are e
 ### Using the ES Module Build​
 Throughout the rest of the documentation, we will be primarily using [ES modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules) syntax. 
 Most modern browsers now support ES modules natively, so we can use Vue from a CDN via native ES modules like this:
-<Code
+
+<Tabs>
+ <TabItem label="Vue">
+   <Code
 lang="html"
 code={`
 <div id="app">{{ message }}</div>
@@ -248,6 +258,12 @@ code={`
 </script>
 `}
 />
+ </TabItem>
+ <TabItem label="Preview">
+   <div class="preview"><p style="color:white">Hello Vue!</p></div>
+ </TabItem>
+</Tabs>
+
 
 ### Enabling Import maps
 In the above example, you are importing from the full CDN URL, but in the rest of the documentation you will see code like this:
@@ -256,9 +272,11 @@ In the above example, you are importing from the full CDN URL, but in the rest o
 import { createApp } from "vue";
 ```
 
-you can teach the browser where to locate the `vue` import by using [Import Maps](https://caniuse.com/import-maps):
+you can tell the browser where to locate the `vue` import by using [Import Maps](https://caniuse.com/import-maps):
 
-```html
+<Tabs>
+ <TabItem label="Vue">
+   ```html
 <script type="importmap">
   {
     "imports": {
@@ -279,6 +297,12 @@ you can teach the browser where to locate the `vue` import by using [Import Maps
   }).mount("#app");
 </script>
 ```
+ </TabItem>
+ <TabItem label="Preview">
+   <div class="preview"><p style="color:white">Hello Vue!</p></div>
+ </TabItem>
+</Tabs>
+
 <LinkButton
 href="https://codepen.io/vuejs-examples/pen/YzRyRYM"
 icon="external"
