@@ -14,11 +14,10 @@
   --sl-color-gray-6: #272727;
   --sl-color-black: #181818;
   font-weight: 400;
-
 }
-/* Light mode colors. */
+
 :root[data-theme="light"] {
-  --sl-color-accent-low: #bbe3bd;
+  --sl-color-accent-low: #a5c8a7;
   --sl-color-accent: #007a24;
   --sl-color-accent-high: #003e0e;
   --sl-color-white: #181818;
@@ -29,9 +28,25 @@
   --sl-color-gray-5: #c2c2c2;
   --sl-color-gray-6: #eeeeee;
   --sl-color-gray-7: #f6f6f6;
-  --sl-color-black: #dce6ddd8;
+  --sl-color-black: #eddeed82;
   font-weight: 400;
 }
+
+
+:root[data-theme="dark"] .sponsors img,
+:root[data-theme="dark"] .platinum img,
+:root[data-theme="dark"] .gold img,
+:root[data-theme="dark"] .special-sponsors img {
+  filter: invert(35%) contrast(200%) brightness(1);
+}
+
+:root[data-theme="light"] .sponsors img,
+:root[data-theme="light"] .platinum img,
+:root[data-theme="light"] .gold img,
+:root[data-theme="light"] .special-sponsors img {
+  filter: none;
+}
+
 
 a {
   color: #42b883;
@@ -178,5 +193,92 @@ homeh2 {
 }
 .sponsors > a:hover {
   transform: scale(1.08) rotate(-2deg);
-  background-color: #bfd6cc78;
+  background-color: #ffffff;
+}
+
+.special-sponsors {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  padding: 10px;
+  text-align: center;
+}
+.special-sponsors p {
+  margin-top: 10px;
+  flex: 1 1 100%;
+}
+.special-sponsors img {
+  max-width: 160px;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.benefit{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  gap:20px
+}
+
+.benefit > div{
+  padding: 20px;
+}
+.platinum {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.9rem; 
+  align-items: center;
+  justify-items: center;
+}
+.platinum a:hover{
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+}
+.platinum > a >img{
+  width: 160px;
+  height: 60px;
+  object-fit: contain;
+  display: block;
+  padding: 10px;
+}
+.gold{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.9rem; 
+  align-items: center;
+  justify-items: center;
+}
+.gold > a >img{
+  width: 160px;
+  height: 60px;
+  object-fit: contain;
+  display: block;
+  padding: 10px;
+}
+.gold a:hover{
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+}
+@media (max-width: 600px) {
+  .special-sponsors {
+    gap: 16px;
+    padding: 6px;
+    flex-direction: column;
+  }
+  .platinum{
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .gold {
+    grid-template-columns: repeat(2, 1fr);  
+  }
+  .benefit{
+    flex-direction: column;
+  }
+  .special-sponsors img {
+    max-width: 120px;
+  }
+
 }
