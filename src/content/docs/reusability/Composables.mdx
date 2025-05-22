@@ -5,6 +5,7 @@ description: Learn how to use composables in Vue.js
 
 import { Aside, Badge, Code, Tabs, TabItem, LinkButton} from "@astrojs/starlight/components";
 import MousePosition from '../../../components/MousePosition.vue';
+import Loading from "../../../components/composable/loading.vue"
 
 <Aside type="note" title="Prerequisites">
   - Familiarity with the Composition API.
@@ -155,28 +156,33 @@ Each component instance calling `useMouse()` will create its own copies of `x` a
 ## Async State Example​
 The `useMouse()` composable doesn't take any arguments, so let's take a look at another example that makes use of one. When doing async data fetching, you often need to handle different states: `loading`, `success`, and `error`:
 
-```vue live client:load
-<script setup>
-import { ref } from 'vue'
+<Tabs>
+  <TabItem label="Vue">
+    ```vue
+  <script setup>
+  import { ref } from 'vue'
 
-const data = ref(null)
-const error = ref(null)
+  const data = ref(null)
+  const error = ref(null)
 
-fetch('...')
-  .then((res) => res.json())
-  .then((json) => (data.value = json))
-  .catch((err) => (error.value = err))
-</script>
+  fetch('...')
+    .then((res) => res.json())
+    .then((json) => (data.value = json))
+    .catch((err) => (error.value = err))
+  </script>
 
-<template>
-  <div v-if="error">Oops! Error encountered: {{ error.message }}</div>
-  <div v-else-if="data">
-    Data loaded:
-    <pre>{{ data }}</pre>
-  </div>
-  <div v-else>Loading...</div>
-</template>
-```
+  <template>
+    <div v-if="error">Oops! Error encountered: {{ error.message }}</div>
+    <div v-else-if="data">
+      Data loaded:
+      <pre>{{ data }}</pre>
+    </div>
+    <div v-else>Loading...</div>
+  </template>
+  ```
+  </TabItem>
+  <TabItem label="Preview"><div class="preview" style="color:white"><Loading client:load/></div></TabItem>
+</Tabs>
 
 It would be tedious to have to repeat this pattern in every component that needs to fetch data. Let's extract it into a composable:
 ```js 

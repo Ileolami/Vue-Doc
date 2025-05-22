@@ -1,6 +1,16 @@
-import { pluginCollapsibleSections } from '@expressive-code/plugin-collapsible-sections'
+import { defineEcConfig } from 'astro-expressive-code'
+import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers'
 
-/** @type {import('@astrojs/starlight/expressive-code').StarlightExpressiveCodeOptions} */
-export default {
-  plugins: [pluginCollapsibleSections()],
-}
+export default defineEcConfig({
+  plugins: [pluginLineNumbers()],
+  defaultProps: {
+    // Disable line numbers by default
+    showLineNumbers: false,
+    // But enable line numbers for certain languages
+    overridesByLang: {
+      'js,ts,html,css, json,vue': {
+        showLineNumbers: true,
+      },
+    },
+  },
+})

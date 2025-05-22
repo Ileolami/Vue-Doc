@@ -33,14 +33,14 @@
 }
 
 
-:root[data-theme="dark"] .sponsors img,
+:root[data-theme="dark"] .sponsors img, img,
 :root[data-theme="dark"] .platinum img,
 :root[data-theme="dark"] .gold img,
 :root[data-theme="dark"] .special-sponsors img {
   filter: invert(35%) contrast(200%) brightness(1);
 }
 
-:root[data-theme="light"] .sponsors img,
+:root[data-theme="light"] .sponsors img, 
 :root[data-theme="light"] .platinum img,
 :root[data-theme="light"] .gold img,
 :root[data-theme="light"] .special-sponsors img {
