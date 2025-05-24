@@ -1,0 +1,292 @@
+---
+title: Using Vue with TypeScript
+description: Learn how to use TypeScript with Vue.js
+sidebar:
+  label: Overview
+---
+
+import { Aside, Code, Tabs, TabItem, LinkButton } from "@astrojs/starlight/components";
+import { Quiz, QuizOption } from 'starlight-videos/components';
+
+
+A type system like TypeScript can detect many common errors via static analysis at build time. This reduces the chance of runtime errors in production, and also allows us to more confidently refactor code in large-scale applications. TypeScript also improves developer ergonomics via type-based auto-completion in IDEs.
+
+Vue is written in TypeScript itself and provides first-class TypeScript support. All official Vue packages come with bundled type declarations that should work out-of-the-box.
+## Project Setup
+
+### Create a New Project
+
+To create a new Vue project with TypeScript support, you can use [Vite](https://vitejs.dev/) or [Vue CLI](https://cli.vuejs.org/):
+
+<Tabs>
+  <TabItem label="Vite">
+    ```bash
+    # npm
+    npm create vite@latest my-vue-ts-app -- --template vue-ts
+
+    # yarn
+    yarn create vite my-vue-ts-app --template vue-ts
+
+    # pnpm
+    pnpm create vite my-vue-ts-app -- --template vue-ts
+    ```
+  </TabItem>
+  <TabItem label="Vue CLI">
+    ```bash
+    # npm
+    npm install -g @vue/cli
+    vue create my-vue-ts-app
+    # Then select the "Manually select features" option and choose TypeScript
+
+    # yarn
+    yarn global add @vue/cli
+    vue create my-vue-ts-app
+    # Then select the "Manually select features" option and choose TypeScript
+    ```
+  </TabItem>
+</Tabs>
+
+### Configure an Existing Project
+
+If you have an existing Vue 3 project that you want to add TypeScript to, follow these steps:
+
+1. Install TypeScript and Vue's type declarations:
+
+```bash
+npm install -D typescript @types/node
+```
+
+2. Create a `tsconfig.json` file in your project root:
+
+```json
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "preserve",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
+```
+
+3. For Vite projects, create a `tsconfig.node.json` file:
+
+```json
+{
+  "compilerOptions": {
+    "composite": true,
+    "skipLibCheck": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["vite.config.ts"]
+}
+```
+
+4. Update your Vite config to include Vue with TypeScript:
+
+```ts
+// vite.config.ts
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+
+export default defineConfig({
+  plugins: [vue()]
+})
+```
+
+5. Add a `vue-shim.d.ts` file to help TypeScript understand `.vue` files:
+
+```ts
+// src/vue-shim.d.ts
+declare module '*.vue' {
+  import type { DefineComponent } from 'vue'
+  const component: DefineComponent<{}, {}, any>
+  export default component
+}
+```
+
+## Development Tools
+
+### IDE Support
+
+[Visual Studio Code](https://code.visualstudio.com/) (VS Code) is strongly recommended for its great TypeScript integration. The [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) extension provides TypeScript support for `.vue` files and many other great features.
+
+<Aside type="tip">
+  Volar replaces the previous official extension Vetur, which only supports Vue 2. If you have Vetur currently installed, make sure to disable it in Vue 3 projects.
+</Aside>
+
+### Takeover Mode
+
+Volar provides a feature called "Takeover Mode" that offers a more performant and accurate TypeScript support by letting Volar handle the Vue files instead of the regular TypeScript language service. To enable it:
+
+1. Disable built-in TypeScript extension in VS Code
+   1. Run "Extensions: Show Built-in Extensions" from VS Code command palette
+   2. Find "TypeScript and JavaScript Language Features"
+   3. Right-click and select "Disable (Workspace)"
+2. Reload the VS Code window
+
+### Client Types
+
+To provide TypeScript with information about Vue's types, you need to import the `@vue/runtime-dom` types in a type declaration file:
+
+```ts
+// src/vite-env.d.ts or any .d.ts file in your project
+/// <reference types="@vue/runtime-dom" />
+```
+
+## General Usage Notes
+
+### `defineComponent()`
+
+To let TypeScript properly infer types inside component options, we need to define components with `defineComponent()`:
+
+```ts
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  // type inference enabled
+  props: {
+    name: String,
+    msg: { type: String, required: true }
+  },
+  data() {
+    return {
+      count: 1
+    }
+  },
+  mounted() {
+    this.name // type: string | undefined
+    this.msg  // type: string
+    this.count // type: number
+  }
+})
+```
+
+`defineComponent()` also supports inferring props passed to `setup()`:
+
+```ts
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  props: {
+    message: String
+  },
+  setup(props) {
+    props.message // type: string | undefined
+  }
+})
+```
+
+### Using with Composition API
+
+When using the Composition API with TypeScript, you'll find that it provides excellent type inference in most cases:
+
+```ts
+import { defineComponent, ref } from 'vue'
+
+export default defineComponent({
+  setup() {
+    const count = ref(0)
+    
+    // TypeScript automatically infers the type as Ref<number>
+    count.value++ // works!
+    
+    // The return value is also type-checked
+    return {
+      count
+    }
+  }
+})
+```
+
+### Using with Single-File Components (SFC)
+
+To use TypeScript in Single-File Components (SFCs), add the `lang="ts"` attribute to the `<script>` block:
+
+```vue
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  // TypeScript enabled
+})
+</script>
+```
+
+Or with `<script setup>`:
+
+```vue
+<script setup lang="ts">
+// TypeScript enabled
+import { ref } from 'vue'
+
+const count = ref(0)
+</script>
+```
+
+## Generic Components
+
+You can use generic types in Vue components when you need components that work with a variety of types:
+
+```vue
+<script setup lang="ts" generic="T">
+defineProps<{
+  items: T[]
+  selected: T
+}>()
+</script>
+```
+
+Or with the Options API:
+
+```ts
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  props: {
+    items: Array,
+    selected: null
+  },
+  methods: {
+    // Using generics in methods
+    identity<T>(value: T): T {
+      return value
+    }
+  }
+})
+```
+
+## Further Reading
+
+This overview covers the basics of using TypeScript with Vue. For more detailed information, check out:
+
+- [TypeScript with Composition API](/typescripts/composition-api)
+- [TypeScript with Options API](/typescripts/options-api)
+
+<LinkButton
+  href="https://vuejs.org/guide/typescript/overview.html"
+  icon="external"
+  iconPlacement="start"
+  variant="secondary"
+>
+  Official Vue TypeScript Guide
+</LinkButton>

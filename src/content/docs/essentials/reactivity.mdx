@@ -1,6 +1,7 @@
 ---
 title: Reactivity Fundamentals
 description: Learn the basics of reactivity in Vue
+tableOfContents: {maxHeadingLevel: 3}
 ---
 
 import { Aside, Badge, LinkButton, Code } from "@astrojs/starlight/components";
@@ -56,7 +57,7 @@ It is possible to add a new property directly to `this` without including it in 
 
 Vue uses a `$` prefix when exposing its own built-in APIs via the component instance. It also reserves the prefix `_` for internal properties. You should avoid using names for top-level `data` properties that start with either of these characters.
 
-## Reactive Proxy vs. Original​
+### Reactive Proxy vs. Original​
 <Aside type="note" title="Vue 2 users">
 In Vue 3, data is made reactive by leveraging [JavaScript Proxies](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy).
 </Aside>

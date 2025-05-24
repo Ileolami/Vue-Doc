@@ -127,7 +127,12 @@ export default defineConfig({
         },
         {
           label: "Best Practices",
-          autogenerate: { directory: "best-practices" },
+          items: [
+            { slug: "best-practices/production-deploy" },
+            { slug: "best-practices/performance" },
+            { slug: "best-practices/accessibilty" },
+            { slug: "best-practices/security" },
+          ],
         },
         {
           label: "Typescript",

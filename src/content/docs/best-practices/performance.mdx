@@ -1,14 +1,13 @@
 ---
 title: Performance
 description: Learn how to optimize performance in Vue.js
+tableOfContents: {maxHeadingLevel: 3}
 ---
 
 import { Aside, Code, LinkButton, Tabs, TabItem, Card } from "@astrojs/starlight/components";
 import { Quiz, QuizOption, List } from 'starlight-videos/components'
 import Opt from '../../../components/perfomance/opt.vue'
 
-
-## Overview
 
 Vue is designed to be performant for most common use cases without much need for manual optimizations. However, there are always challenging scenarios where extra fine-tuning is needed. In this section, we will discuss what you should pay attention to when it comes to performance in a Vue application.
 
@@ -36,7 +35,7 @@ For profiling load performance of production deployments:
 
 For profiling performance during local development:
 
-- [Chrome DevTools Performance Panel]9https://developer.chrome.com/docs/devtools/evaluate-performance/
+- [Chrome DevTools Performance Panel](https://developer.chrome.com/docs/devtools/evaluate-performance/)
    - [`app.config.performance`](https://vuejs.org/api/application.html#app-config-performance) enables Vue-specific performance markers in Chrome DevTools' performance timeline.
 - [Vue DevTools Extension](https://vuejs.org/guide/scaling-up/tooling.html#browser-devtools) also provides a performance profiling feature.
 
@@ -155,7 +154,7 @@ const computedObj = computed(() => {
 
 Because a new object is created each time, the new value is technically always different from the old value. Even if the `isEven` property remains the same, Vue won't be able to know unless it performs a deep comparison of the old value and the new value. Such comparison could be expensive and likely not worth it.
 
-Instead, we can optimize this by manually comparing the new value with the old value, and conditionally returning the old value if we know nothing has changed:
+Instead, you can optimize this by manually comparing the new value with the old value, and conditionally returning the old value if you know nothing has changed:
 
 <Tabs>
 <TabItem label="Code">
@@ -188,5 +187,109 @@ You should always perform the full computation before comparing and returning th
 
 ## General Optimizations
 
-<List>The following tips affect both page load and update performance.</List>
+<Aside type="caution">The following tips affect both page load and update performance.</Aside>
 
+### Virtualize Large Lists​
+One of the most common performance issues in all frontend applications is **rendering large lists**. No matter how performant a framework is, rendering a list with thousands of items will be slow due to the sheer number of DOM nodes that the browser needs to handle.
+
+However, you don't necessarily have to render all these nodes upfront. In most cases, the user's screen size can display only a small subset of your large list. You can greatly improve the performance with list virtualization, the technique of only rendering the items that are currently in or close to the viewport in a large list.
+
+Implementing list virtualization isn't easy, luckily there are existing community libraries that you can directly use:
+
+- [vue-virtual-scroller](https://github.com/Akryum/vue-virtual-scroller)
+- [vue-virtual-scroll-grid](https://github.com/rocwang/vue-virtual-scroll-grid)
+- [vueuc/VVirtualList](https://github.com/07akioni/vueuc)
+
+### Reduce Reactivity Overhead for Large Immutable Structures​
+Vue's reactivity system is deep by default. While this makes state management intuitive, it does create a certain level of overhead when the data size is large, because every property access triggers proxy traps that perform dependency tracking. This typically becomes noticeable when dealing with large arrays of deeply nested objects, where a single render needs to access 100,000+ properties, so it should only affect very specific use cases.
+
+Vue does provide an escape hatch to opt-out of deep reactivity by using [`shallowRef()`](https://vuejs.org/api/reactivity-advanced.html#shallowref) and [`shallowReactive()`](https://vuejs.org/api/reactivity-advanced.html#shallowreactive). Shallow APIs create state that is reactive only at the root level, and exposes all nested objects untouched. This keeps nested property access fast, with the trade-off being that we must now treat all nested objects as immutable, and updates can only be triggered by replacing the root state:
+
+```js
+const shallowArray = shallowRef([
+  /* big list of deep objects */
+])
+
+// this won't trigger updates...
+shallowArray.value.push(newObject)
+// this does:
+shallowArray.value = [...shallowArray.value, newObject]
+
+// this won't trigger updates...
+shallowArray.value[0].foo = 1
+// this does:
+shallowArray.value = [
+  {
+    ...shallowArray.value[0],
+    foo: 1
+  },
+  ...shallowArray.value.slice(1)
+]
+```
+
+### Avoid Unnecessary Component Abstractions​
+Sometimes you may create [renderless components](https://vuejs.org/guide/components/slots.html#renderless-components) or higher-order components (i.e. _components that render other components with extra props_) for better abstraction or code organization. While there is nothing wrong with this, do keep in mind that component instances are much more expensive than plain DOM nodes, and creating too many of them due to abstraction patterns will incur performance costs.
+
+You must take note that reducing only a few instances won't have noticeable effect, so don't sweat it if the component is rendered only a few times in the app. The best scenario to consider this optimization is again in large lists. Imagine a list of 100 items where each item component contains many child components. Removing one unnecessary component abstraction here could result in a reduction of hundreds of component instances.
+
+## Quiz
+
+<Quiz title="1. What is the best way to optimize performance in Vue?">
+  <QuizOption>
+    Use the production build of Vue
+  </QuizOption>
+  <QuizOption>
+    Use the development build of Vue
+  </QuizOption>
+  <QuizOption>
+    Use the global build of Vue
+  </QuizOption>
+  <QuizOption correct>
+    Use the right architecture for the type of application you are building
+  </QuizOption>
+</Quiz>
+
+<Quiz title="2. Which aspect does 'page load performance' in Vue primarily focus on?">
+  <QuizOption>
+    How fast the application updates after user input
+  </QuizOption>
+  <QuizOption correct>
+    How quickly the application shows content and becomes interactive on the initial visit
+  </QuizOption>
+  <QuizOption>
+    How many dependencies are installed
+  </QuizOption>
+  <QuizOption>
+    How often the app is deployed
+  </QuizOption>
+</Quiz>
+
+<Quiz title="3. What is the main benefit of using code splitting in a Vue application?">
+  <QuizOption>
+    It increases the size of the JavaScript bundle
+  </QuizOption>
+  <QuizOption correct>
+    It allows loading only the necessary code on demand, improving performance
+  </QuizOption>
+  <QuizOption>
+    It disables lazy loading
+  </QuizOption>
+  <QuizOption>
+    It makes all code load at once
+  </QuizOption>
+</Quiz>
+
+<Quiz title="4. When dealing with large lists in Vue, what technique can greatly improve rendering performance?">
+  <QuizOption>
+    Using more component abstractions
+  </QuizOption>
+  <QuizOption>
+    Avoiding the use of computed properties
+  </QuizOption>
+  <QuizOption correct>
+    List virtualization (only rendering visible items)
+  </QuizOption>
+  <QuizOption>
+    Using shallowRef for all data
+  </QuizOption>
+</Quiz>
