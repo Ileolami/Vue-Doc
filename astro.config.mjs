@@ -136,8 +136,12 @@ export default defineConfig({
         },
         {
           label: "Typescript",
-          autogenerate: { directory: "typescripts" },
-        },
+          items: [
+            { slug: "typescripts/overview" },
+            { slug: "typescripts/composition-api" },
+            { slug: "typescripts/options-api" },
+          ],
+        }, 
         {
           label: "Extra Topics",
           autogenerate: { directory: "extra-topics" },

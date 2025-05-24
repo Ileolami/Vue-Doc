@@ -4,7 +4,7 @@ description: Learn how to create a Vue application
 sidebar: 
    label: Application
 ---
-import { Aside, Code, Tabs, TabItem } from "@astrojs/starlight/components";
+import { Aside, Code, Tabs, TabItem, FileTree } from "@astrojs/starlight/components";
 import { Quiz, QuizOption } from 'starlight-videos/components'
 import Counter from "../../../components/counter.jsx";
 
@@ -43,16 +43,16 @@ const app = createApp(App)
 
 While many examples in this guide only need a single component, most real applications are organized into a tree of nested, reusable components. For example, a Todo application's component tree might look like this:
 
-```js
-App (root component)
-├─ TodoList
-│  └─ TodoItem
-│     ├─ TodoDeleteButton
-│     └─ TodoEditButton
-└─ TodoFooter
-   ├─ ClearTodosButton
-   └─ TodoStatistics
-```
+<FileTree>
+  - App(root component)
+    - TodoList
+      - TodoItem
+         - TodoDeleteButton
+         - TodoEditButton
+    - TodoFooter
+      - ClearTodosButton
+      - TodoStatistics
+</FileTree>
 
 In later sections of the guide, you will learn how to define and compose multiple components together. Before that, you will focus on what happens inside a single component.
 

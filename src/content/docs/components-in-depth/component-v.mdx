@@ -5,6 +5,7 @@ description: Learn how to use the v-model directive in Vue.js
 
 import { FileTree, Icon, Badge, Aside, LinkButton } from '@astrojs/starlight/components';
 import { Quiz, QuizOption } from 'starlight-videos/components'
+import Dropdown from "../../../components/Dropdown.vue";
 
 ## Basic Usage​
 `v-model` can be used on a component to implement a two-way binding.
@@ -158,37 +159,35 @@ If prop options are also needed, they should be passed after the model name:
 ```js
 const title = defineModel('title', { required: true })
 ```
-<FileTree>
-  - Pre 3.4 Usage
-    - code
-        - ```vue
-            <!-- MyComponent.vue -->
-            <script setup>
-            defineProps({
-            title: {
-                required: true
-            }
-            })
-            defineEmits(['update:title'])
-            </script>
 
-            <template>
-            <input
-                type="text"
-                :value="title"
-                @input="$emit('update:title', $event.target.value)"
-            />
-            </template>
+<Dropdown label="Pre 3.4 Usage" client:load>
+      ```vue
+        <!-- MyComponent.vue -->
+        <script setup>
+        defineProps({
+        title: {
+            required: true
+        }
+        })
+        defineEmits(['update:title'])
+        </script>
+
+        <template>
+        <input
+            type="text"
+            :value="title"
+            @input="$emit('update:title', $event.target.value)"
+        />
+        </template>
         ```
-    - Try
-        - <LinkButton href="https://play.vuejs.org/#eNp9kE1rwzAMhv+KMIW00DXsGtKyMXYc7D7vEBplM8QfOHJoCfnvk+1QsjJ2svVKevRKk3h27jAGFJWoh7NXjmBACu4kjdLOeoIJPHYwQ+ethoJLi1vq7fpi+WfQ0JI+lCstcrkYQJqzNQMBKeoRjhG4LcYHbVvsofFfQUcCXhrteix20tRl9sIuOCBkvSHkCKD+fjxN04Ka57rkOOlrMwu7SlVHKdIrBZRcWpc3ntiLO7t/nKHFThl899YN248ikYpP9pj1V60o6sG1TMwDU/q/FZRxgeIPgK4uGcQLSZGlamz6sHKd1afUxOoGeeT298A9bHCMKxBfE3mTSNjl1vud5x8qNa76"
-            icon="seti:video"
-            iconPlacement="start"
-            variant="secondary"
-            >
-            Try it in the playground
-            </LinkButton>
-</FileTree>
+    <LinkButton href="https://play.vuejs.org/#eNp9kE1rwzAMhv+KMIW00DXsGtKyMXYc7D7vEBplM8QfOHJoCfnvk+1QsjJ2svVKevRKk3h27jAGFJWoh7NXjmBACu4kjdLOeoIJPHYwQ+ethoJLi1vq7fpi+WfQ0JI+lCstcrkYQJqzNQMBKeoRjhG4LcYHbVvsofFfQUcCXhrteix20tRl9sIuOCBkvSHkCKD+fjxN04Ka57rkOOlrMwu7SlVHKdIrBZRcWpc3ntiLO7t/nKHFThl899YN248ikYpP9pj1V60o6sG1TMwDU/q/FZRxgeIPgK4uGcQLSZGlamz6sHKd1afUxOoGeeT298A9bHCMKxBfE3mTSNjl1vud5x8qNa76"
+        icon="seti:video"
+        iconPlacement="start"
+        variant="secondary"
+        >
+        Try it in the playground
+      </LinkButton>
+</Dropdown>
 
 ---
 
@@ -222,43 +221,39 @@ variant="secondary"
 Try it in the playground
 </LinkButton>
 
+<Dropdown label="Pre 3.4 Usage" client:load>
+ ```vue
+      <script setup>
+      defineProps({
+      firstName: String,
+      lastName: String
+      })
 
-<FileTree>
-- Pre 3.4 Usage
-  - code
-    - ```vue
-        <script setup>
-        defineProps({
-        firstName: String,
-        lastName: String
-        })
+      defineEmits(['update:firstName', 'update:lastName'])
+      </script>
 
-        defineEmits(['update:firstName', 'update:lastName'])
-        </script>
-
-        <template>
-        <input
-            type="text"
-            :value="firstName"
-            @input="$emit('update:firstName', $event.target.value)"
-        />
-        <input
-            type="text"
-            :value="lastName"
-            @input="$emit('update:lastName', $event.target.value)"
-        />
-        </template>
+      <template>
+      <input
+          type="text"
+          :value="firstName"
+          @input="$emit('update:firstName', $event.target.value)"
+      />
+      <input
+          type="text"
+          :value="lastName"
+          @input="$emit('update:lastName', $event.target.value)"
+      />
+      </template>
      ```    
-  - Try
-    - <LinkButton
-      href="https://play.vuejs.org/#eNqFkstuwjAQRX/F8iZUAqKKHQpIfbAoUmnVx86bKEzANLEt26FUkf+9Y4MDSAg2UWbu9fjckVv6oNRw2wAd08wUmitLDNhGTZngtZLakpZoKIkjpZY1SdCadNK3Ab3IazhowzQ2/ES0MVFIYSwpucbvxA/qJXO5FsldlKr8qDxL8EKW7kEQAQsLtapyC1gRkq3vp217mOccwf8wwLksRSlYIoMvCNkOarmEahyODAT2J4yGgtFzhx8UDf5/r6c4NEs7CNqnpxkvbO0kcVjNhCyh5AJe/SW9pBPOV3DJGvu3dsKFaiyxf8qTW9gheQwVs4Z90BDm5oF47cF/Ht4aZC75argxUmD61g9ktJC14hXoN2U5ZmJ0TILitbyq5O889KxuoB/7xRqKnwv9jdn5HqPvGnDVWwTpNJvrFSCul2efi4DeiRigqdB9RfwAI6vGM+5tj41YIvaJL9C+hOfNxerLzHYWhImhPKh3uuBnFJ/A05XoR9zRcBTOMeGo+wcs+yse"
-      icon="seti:video"
-      iconPlacement="start"
-      variant="secondary"
-      >
-      Try it in the playground
-      </LinkButton>
-</FileTree>
+ <LinkButton
+    href="https://play.vuejs.org/#eNqFkstuwjAQRX/F8iZUAqKKHQpIfbAoUmnVx86bKEzANLEt26FUkf+9Y4MDSAg2UWbu9fjckVv6oNRw2wAd08wUmitLDNhGTZngtZLakpZoKIkjpZY1SdCadNK3Ab3IazhowzQ2/ES0MVFIYSwpucbvxA/qJXO5FsldlKr8qDxL8EKW7kEQAQsLtapyC1gRkq3vp217mOccwf8wwLksRSlYIoMvCNkOarmEahyODAT2J4yGgtFzhx8UDf5/r6c4NEs7CNqnpxkvbO0kcVjNhCyh5AJe/SW9pBPOV3DJGvu3dsKFaiyxf8qTW9gheQwVs4Z90BDm5oF47cF/Ht4aZC75argxUmD61g9ktJC14hXoN2U5ZmJ0TILitbyq5O889KxuoB/7xRqKnwv9jdn5HqPvGnDVWwTpNJvrFSCul2efi4DeiRigqdB9RfwAI6vGM+5tj41YIvaJL9C+hOfNxerLzHYWhImhPKh3uuBnFJ/A05XoR9zRcBTOMeGo+wcs+yse"
+    icon="seti:video"
+    iconPlacement="start"
+    variant="secondary"
+    >
+    Try it in the playground
+  </LinkButton>
+</Dropdown>
 
 ---
 
