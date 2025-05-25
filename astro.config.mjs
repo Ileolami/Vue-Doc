@@ -6,6 +6,8 @@ import liveCode from "astro-live-code";
 import vue from "@astrojs/vue";
 import starlightVideos from "starlight-videos";
 import starlightScrollToTop from "starlight-scroll-to-top";
+import starlightMarkdownBlocks, { Aside } from 'starlight-markdown-blocks';
+import starlightUtils from "@lorenzo_lewis/starlight-utils";
 // https://astro.build/config
 export default defineConfig({
   i18n: {
@@ -27,6 +29,16 @@ export default defineConfig({
       },
       title: "Vue.js",
       plugins: [
+        starlightUtils({
+
+        }),
+        starlightMarkdownBlocks({
+          blocks: {
+            idea: Aside(
+              { label: 'Idea', color: 'green', icon: '💡' }
+            ),
+          },
+        }),
         starlightScrollToTop({
           position: "right",
           tooltipText: "Back to top",
@@ -144,7 +156,11 @@ export default defineConfig({
         }, 
         {
           label: "Extra Topics",
-          autogenerate: { directory: "extra-topics" },
+          items: [
+            { slug: "extra-topics/ways-of-use" },
+            { slug: "extra-topics/composition-api-faq" },
+            { slug: "extra-topics/reactivity-indepth" },
+          ],
         },
       ],
     }),

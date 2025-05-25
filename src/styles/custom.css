@@ -47,6 +47,14 @@
   filter: none;
 }
 
+.starlight-custom-aside--idea {
+  border: 1px solid var(--sl-color-green);
+  border-radius: 0.5rem;
+
+  .starlight-aside__title {
+    text-transform: uppercase;
+  }
+}
 
 a {
   color: #42b883;

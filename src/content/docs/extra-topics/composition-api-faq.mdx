@@ -1,4 +1,76 @@
 ---
 title: Composition API FAQ
 description: Learn the frequently asked questions about the Composition API in Vue.js
+tableOfContents: {maxHeadingLevel: 3}
 ---
+
+import { Aside, Code, LinkButton, Tabs, TabItem, Badge, LinkCard } from "@astrojs/starlight/components";
+import { Quiz, QuizOption, List } from 'starlight-videos/components'
+
+<List  title="Prerequisites" icon="open-book">
+   - This FAQ assumes prior experience with Vue - in particular, experience with Vue 2 while primarily using Options API.
+</List>
+---
+
+## What is Composition API?
+
+<LinkCard href='https://vueschool.io/lessons/introduction-to-the-vue-js-3-composition-api?friend=vuejs' title='Vue School' description='Watch Free Tutorial Video On Composition API From Vue School' icon='seti:video' />
+
+Composition API is a set of APIs that allows us to author Vue components using imported functions instead of declaring options. It is an umbrella term that covers the following APIs:
+
+- [Reactivity API](https://vuejs.org/api/reactivity-core.html), e.g. `ref()` and `reactive()`, that allows us to directly create reactive state, computed state, and watchers.
+
+- [Lifecycle Hooks](https://vuejs.org/api/composition-api-lifecycle.html), e.g. `onMounted()` and `onUnmounted()`, that allow us to programmatically hook into the component lifecycle.
+
+- [Dependency Injection](https://vuejs.org/api/composition-api-dependency-injection.html), i.e. `provide()` and `inject()`, that allow us to leverage Vue's dependency injection system while using Reactivity APIs.
+
+Composition API is a built-in feature of Vue 3 and [Vue 2.7](https://blog.vuejs.org/posts/vue-2-7-naruto.html). For older Vue 2 versions, use the officially maintained [`@vue/composition-api plugin`](https://github.com/vuejs/composition-api). In Vue 3, it is also primarily used together with the [`<script setup>`](https://vuejs.org/api/sfc-script-setup.html) syntax in Single-File Components. Here's a basic example of a component using Composition API:
+
+```vue
+<script setup>
+import { ref, onMounted } from 'vue'
+
+// reactive state
+const count = ref(0)
+
+// functions that mutate state and trigger updates
+function increment() {
+  count.value++
+}
+
+// lifecycle hooks
+onMounted(() => {
+  console.log(`The initial count is ${count.value}.`)
+})
+</script>
+
+<template>
+  <button @click="increment">Count is: {{ count }}</button>
+</template>
+```
+
+Despite an API style based on function composition, **Composition API is NOT functional programming**. Composition API is based on Vue's mutable, fine-grained reactivity paradigm, whereas functional programming emphasizes immutability.
+
+If you are interested in learning how to use Vue with Composition API, you can set the site-wide API preference to Composition API using the toggle at the top of the left sidebar, and then go through the guide from the beginning.
+
+---
+
+## Why Composition API?​
+### Better Logic Reuse​
+The primary advantage of Composition API is that it enables clean, efficient logic reuse in the form of [Composable functions](/reusability/composables). It solves [all the drawbacks of mixins](/reusability/composables#vs-mixins), the primary logic reuse mechanism for Options API.
+
+Composition API's logic reuse capability has given rise to impressive community projects such as [VueUse](https://vueuse.org/), an ever-growing collection of composable utilities. It also serves as a clean mechanism for easily integrating stateful third-party services or libraries into Vue's reactivity system, for example [immutable data](/extra-topics/reactivity-indepth#immutable-data), [state machines](/extra-tpoics/reactivity-indepth#state-machines), and [RxJS](/extra-topics/reactivity-indepth#rxjs).
+
+### More Flexible Code Organization​
+Many users love that we write organized code by default with Options API: everything has its place based on the option it falls under. However, Options API poses serious limitations when a single component's logic grows beyond a certain complexity threshold. This limitation is particularly prominent in components that need to deal with multiple logical concerns, which we have witnessed first hand in many production Vue 2 apps.
+
+Take the folder explorer component from Vue CLI's GUI as an example: this component is responsible for the following logical concerns:
+
+- Tracking current folder state and displaying its content
+- Handling folder navigation (opening, closing, refreshing...)
+- Handling new folder creation
+- Toggling show favorite folders only
+- Toggling show hidden folders
+- Handling current working directory changes
+
+The [original version](https://github.com/vuejs/vue-cli/blob/a09407dd5b9f18ace7501ddb603b95e31d6d93c0/packages/@vue/cli-ui/src/components/folder/FolderExplorer.vue#L198-L404) of the component was written in Options API. If we give each line of code a color based on the logical concern it is dealing with, this is how it looks:

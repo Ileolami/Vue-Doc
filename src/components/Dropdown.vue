@@ -67,7 +67,7 @@ const selectOption = (option) => {
   align-items: center;
   justify-content: space-between;
   margin-top: 10px;
-  background-color: #fff;
+  background-color: inherit;
   border: 1px solid #ddd;
   border-radius: 4px;
   cursor: pointer;
