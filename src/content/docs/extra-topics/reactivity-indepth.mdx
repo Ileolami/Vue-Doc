@@ -130,7 +130,8 @@ Effect subscriptions are stored in a global `WeakMap<target, Map<key, Set<effect
 
 Inside `trigger()`, there is also a lookup the subscriber effects for the property. But this time we invoke them instead:
 
-```jsfunction trigger(target, key) {
+```js
+function trigger(target, key) {
   const effects = getSubscribersForProperty(target, key)
   effects.forEach((effect) => effect())
 }
@@ -256,7 +257,7 @@ type DebuggerEvent = {
 
 ### Computed Debugging 
 
-We can debug computed properties by passing `computed()` a second options object with `onTrack` and `onTrigger` callbacks:
+You can debug computed properties by passing `computed()` a second options object with `onTrack` and `onTrigger` callbacks:
 
 - `onTrack` will be called when a reactive property or ref is tracked as a dependency.
 - `onTrigger` will be called when the watcher callback is triggered by the mutation of a dependency.
