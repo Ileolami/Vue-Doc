@@ -1,17 +1,38 @@
 <script setup>
-import { signal, computed } from './angular-signal.js'
+import { shallowRef } from 'vue'
+
+function signal(initialValue) {
+  const r = shallowRef(initialValue)
+  const s = () => r.value
+  s.set = (value) => {
+    r.value = value
+  }
+  s.update = (updater) => {
+    r.value = updater(r.value)
+  }
+  return s
+}
 
 const count = signal(0)
-const double = computed(() => count() * 2)
+
+function increment() {
+  count.update(v => v + 1)
+}
+
+function decrement() {
+  count.update(v => v - 1)
+}
+
+function reset() {
+  count.set(0)
+}
 </script>
 
 <template>
-  <h1>Count is: {{ count() }}</h1>
-  <h1>Double is: {{ double() }}</h1>
-  <button @click="count.update(v => v + 1)">
-    increment
-  </button>
-  <button @click="count.set(0)">
-    reset
-  </button>
+  <div>
+    <p>Count: {{ count() }}</p>
+    <button @click="increment">Increment</button>
+    <button @click="decrement">Decrement</button>
+    <button @click="reset">Reset</button>
+  </div>
 </template>
