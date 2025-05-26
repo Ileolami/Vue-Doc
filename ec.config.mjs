@@ -8,7 +8,7 @@ export default defineEcConfig({
     showLineNumbers: false,
     // But enable line numbers for certain languages
     overridesByLang: {
-      'js,ts,html,css,json,vue': {
+      'js,ts,html,css,json,vue,jsx,tsx': {
         showLineNumbers: true,
       },
     },

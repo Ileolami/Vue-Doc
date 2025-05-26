@@ -2,12 +2,11 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import react from "@astrojs/react";
-import liveCode from "astro-live-code";
 import vue from "@astrojs/vue";
 import starlightVideos from "starlight-videos";
 import starlightScrollToTop from "starlight-scroll-to-top";
 import starlightMarkdownBlocks, { Aside } from 'starlight-markdown-blocks';
-import starlightUtils from "@lorenzo_lewis/starlight-utils";
+import starlightFullViewMode from "starlight-fullview-mode";
 // https://astro.build/config
 export default defineConfig({
   i18n: {
@@ -22,16 +21,16 @@ export default defineConfig({
     vue({
       exclude: ["**/react/*", "**/*.react.*"],
     }),
-    liveCode({}),
     starlight({
       editLink: {
         baseUrl: "https://github.com/Ileolami/Vue-Doc/tree/main",
       },
       title: "Vue.js",
       plugins: [
-        starlightUtils({
-
-        }),
+      starlightFullViewMode({
+        leftSidebarEnabled: true,
+        rightSidebarEnabled: false
+      }),
         starlightMarkdownBlocks({
           blocks: {
             idea: Aside(
@@ -160,6 +159,8 @@ export default defineConfig({
             { slug: "extra-topics/ways-of-use" },
             { slug: "extra-topics/composition-api-faq" },
             { slug: "extra-topics/reactivity-indepth" },
+            { slug: "extra-topics/rendering-mechanism" },
+            { slug: "extra-topics/render-function" },
           ],
         },
       ],
