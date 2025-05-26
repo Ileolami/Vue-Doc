@@ -6,7 +6,7 @@ tableOfContents: {maxHeadingLevel: 3}
 
 import { Aside, Code, LinkButton, Tabs, TabItem, Badge, LinkCard } from "@astrojs/starlight/components";
 import { Quiz, QuizOption } from 'starlight-videos/components'
-import SpreadSheet from '../../../components/reactivity-in-depth/spreadSheet.vue'
+import Spread from '../../../components/reactivity-in-depth/spreadSheet.vue'
 import Immer from '../../../components/reactivity-in-depth/immer.vue'
 import SolidCounter from '../../../components/reactivity-in-depth/solid-counter.vue'
 import AngularSignal from '../../../components/reactivity-in-depth/angular-signal.vue'
@@ -18,7 +18,7 @@ One of Vue’s most distinctive features is the unobtrusive reactivity system. C
 ## What is Reactivity?​
 This term comes up in programming quite a bit these days, but what do people mean when they say it? Reactivity is a programming paradigm that allows us to adjust to changes in a declarative manner. The canonical example that people usually show, because it’s a great one, is an Excel spreadsheet:
 
-<SpreadSheet client:load />
+<Spread client:load />
 
 Here cell A2 is defined via a formula of `= A0 + A1` (you can click on A2 to view or edit the formula), so the spreadsheet gives us 3. No surprises there. But if you update A0 or A1, you'll notice that A2 automagically updates too.
 
