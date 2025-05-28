@@ -93,6 +93,7 @@ export default defineConfig({
           items: [
             { slug: "essentials/create" },
             { slug: "essentials/template" },
+            { slug: "essentials/component-basics" },
             { slug: "essentials/reactivity" },
             { slug: "essentials/computed" },
             { slug: "essentials/class-styles" },

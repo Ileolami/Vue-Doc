@@ -10,12 +10,16 @@ import { Quiz, QuizOption } from 'starlight-videos/components'
 
 In addition to the default set of directives shipped in core (like `v-model` or `v-show`), Vue also allows you to register your own custom directives.
 
-We have introduced two forms of code reuse in Vue: [components](https://vuejs.org/guide/essentials/component-basics.html) and [composables](/reusability/composables). Components are the main building blocks, while composables are focused on reusing stateful logic. Custom directives, on the other hand, are mainly intended for reusing logic that involves low-level DOM access on plain elements.
+Two forms of code reuse have been introduced in Vue: [components](https://vuejs.org/guide/essentials/component-basics.html) and [composables](/reusability/composables). 
+- Components are the main building blocks
+- Composables are focused on reusing stateful logic. 
+
+Custom directives, on the other hand, are mainly intended for reusing logic that involves low-level DOM access on plain elements.
 
 A custom directive is defined as an object containing lifecycle hooks similar to those of a component. The hooks receive the element the directive is bound to. Here is an example of a directive that adds a class to an element when it is inserted into the DOM by Vue:
 
 <Tabs>
-<TabItem label="Code">
+<TabItem label="Js">
 <Code
 lang="js"
 code={`
@@ -31,6 +35,8 @@ export default {
 }
 `}
 />
+</TabItem>
+<TabItem label="Template">
 <Code
 lang="html"
 code={`
@@ -81,7 +87,7 @@ export default {
 `}
 />
 </TabItem>
-<TabItem label="HTML" default>
+<TabItem label="Template" default>
 <Code
 lang="html"
 code={`
@@ -188,7 +194,7 @@ app.directive('color', (el, binding) => {
 })
 ```
 </TabItem>
-<TabItem label="HTML" default>
+<TabItem label="Template" default>
 <Code
 lang="html"
 code={`

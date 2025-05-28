@@ -4,7 +4,7 @@ description: Learn the basics of reactivity in Vue
 tableOfContents: {maxHeadingLevel: 3}
 ---
 
-import { Aside, Badge, LinkButton, Code } from "@astrojs/starlight/components";
+import { Aside, Badge, LinkButton, Code, Tabs, TabItem } from "@astrojs/starlight/components";
 import { Quiz, QuizOption } from 'starlight-videos/components'
 
 <Aside type="note" title="API Preference">
@@ -20,26 +20,33 @@ import { Quiz, QuizOption } from 'starlight-videos/components'
 
 With the Options API, `data` option are used to declare reactive state of a component. The option value should be a function that returns an object. Vue will call the function when creating a new component instance, and wrap the returned object in its reactivity system. Any top-level properties of this object are proxied on the component instance (`this` in methods and lifecycle hooks):
 
-<Code
-lang="js"
-mark={[2,3,4,5,6]}
-code={
-`export default {
-  data() {
-    return {
-      count: 1
-    }
-  },
-    // mounted is a lifecycle hook which we will explain later
-    mounted() {
-      // this refers to the component instance.
-      console.log(this.count) // => 1
+<Tabs>
+<TabItem label="Code">
+  <Code
+  lang="js"
+  mark={[2,3,4,5,6]}
+  code={
+  `export default {
+    data() {
+      return {
+        count: 1
+      }
+    },
+      // mounted is a lifecycle hook which we will explain later
+      mounted() {
+        // this refers to the component instance.
+        console.log(this.count) // => 1
 
-      // data can be mutated as well
-      this.count = 2
-  }
-}`}
-/>
+        // data can be mutated as well
+        this.count = 2
+    }
+  }`}
+  />
+</TabItem>
+<TabItem label="Preview">
+<p>Counter : 2</p>
+</TabItem>
+</Tabs>
 
 
 <LinkButton
@@ -92,7 +99,7 @@ When you access `this.someObject` after assigning it, the value is a reactive pr
   iconPlacement="start"
   variant="secondary"
 >
-  Methods in Vue 3
+ Watch Free Tutorial Video On Methods in Vue 3 From Vue School
 </LinkButton>
 
 `methods` option are used to declare methods on a component instance. This should be an object containing the desired methods:

@@ -36,7 +36,7 @@ Aside from these two components, you can also apply animations in Vue using othe
 This is an example of the most basic usage:
 
 <Tabs>
-  <TabItem label="HTML">
+  <TabItem label="Template">
     <Code
       lang="html"
       code={`
@@ -65,9 +65,12 @@ This is an example of the most basic usage:
     />
   </TabItem>
   <TabItem label="Preview" default>
-    <Toggle client:load />
+   <Toggle client:load />
   </TabItem>
 </Tabs>
+
+
+
 
 <LinkButton
 href="https://play.vuejs.org/#eNpVkEFuwyAQRa8yZZNWqu1sunFJ1N4hSzYUjRNUDAjGVJHluxcCipIV/OG/pxEr+/a+TwuykfGogvYEEWnxR2H17F0gWCHgBBtMwc2wy9WdsMIqZ2OuXtwfHErhlcKCb8LyoVoynwPh7I0kzAmA/yxEzsKXMlr9HgRr9Es5BTue3PlskA+1VpFTkDZq0i3niYfU6anRmbqgMY4PZeH8OjwBfHhYIMdIV1OuferQEoZOKtIJ328TgzJhm8BabHR3jeC8VJqusO8/IqCM+CnsVqR3V/mfRxO5amnkCPuK5B+6rcG2fydshks="
@@ -601,7 +604,7 @@ code={`
 In addition to toggling an element with `v-if` / `v-show`, you can also transition between two elements using `v-if` / `v-else` / `v-else-if`, as long as we make sure that there is only one element being shown at any given moment:
 
 <Tabs>
-  <TabItem label="HTML">
+  <TabItem label="Template">
     <Code
       lang="html"
       code={`
@@ -612,6 +615,36 @@ In addition to toggling an element with `v-if` / `v-show`, you can also transiti
 </Transition>
       `}
     />
+  </TabItem>
+  <TabItem label="CSS">
+  ```css
+  <style>
+    .btn-container {
+      display: inline-block;
+      position: relative;
+      height: 1em;
+    }
+
+    button {
+      position: absolute;
+    }
+
+    .slide-up-enter-active,
+    .slide-up-leave-active {
+      transition: all 0.25s ease-out;
+    }
+
+    .slide-up-enter-from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .slide-up-leave-to {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    </style>
+```
   </TabItem>
   <TabItem label="Preview">
     <SaveToggle client:load />
@@ -654,7 +687,7 @@ Here's the previous demo with `mode="out-in"`:
 `<Transition>` can also be used around [dynamic components](https://vuejs.org/guide/essentials/component-basics.html#dynamic-components):
 
 <Tabs>
-  <TabItem label="HTML">
+  <TabItem label="Template">
     <Code
       lang="html"
       code={`
@@ -663,6 +696,21 @@ Here's the previous demo with `mode="out-in"`:
 </Transition>
       `}
     />
+  </TabItem>
+  <TabItem label="CSS">
+   ```css
+   <style>
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 0.5s ease;
+  }
+
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
+  }
+  </style>
+```
   </TabItem>
   <TabItem label="Preview">
     <div style="padding: 1rem; background-color: balck; border-radius: 0.5rem; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">

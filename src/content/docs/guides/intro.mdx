@@ -50,11 +50,9 @@ This is why Vue is often referred to as **"The Progressive Framework"** because 
 
 Here is a quick example to give you a feel of what Vue code looks like:
 <Tabs>
- <TabItem label="Code">
-    <Code
-  lang="js"
-  code={`
-      import { createApp, ref } from 'vue'
+ <TabItem label="Js">
+ ```js
+       import { createApp, ref } from 'vue'
 
       createApp({
       setup() {
@@ -63,14 +61,16 @@ Here is a quick example to give you a feel of what Vue code looks like:
           }
       }
       }).mount('#app')
-
-      <div id='app'>
-          <button @click='count++'>
-              Count is: {{ count }}
-          </button>
+      ```
+ </TabItem>
+ <TabItem label="Template">
+  ```html
+  <div id='app'>
+    <button @click='count++'>
+        Count is: {{ count }}
+    </button>
       </div>
-  `}
-  />
+  ```
  </TabItem>
  <TabItem label="Preview" default>
   <Counter client:load />
