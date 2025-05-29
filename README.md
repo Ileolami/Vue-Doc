@@ -2,9 +2,9 @@
 
 [![Built with Starlight](https://astro.badg.es/v2/built-with-starlight/tiny.svg)](https://starlight.astro.build)
 
-This repository contain the replication of the official Vue.js documentation. The original documentation is available at [https://vuejs.org](https://vuejs.org).
+This repository contains the replication of the official Vue.js documentation. The original documentation is available at [https://vuejs.org](https://vuejs.org).
 
-> _The purpose of this repository is to learn how to build a documentation site using Astro and Starlight. It is not intended to be a replacement for the official documentation.It is a task under the supervision of Technical Writing Mentorship Program._
+> _The purpose of this repository is to learn how to build a documentation site using Astro and Starlight. It is not intended to be a replacement for the official documentation. It is a task under the supervision of Technical Writing Mentorship Program._
 
 ## 🚀 Project Overview
 
@@ -14,6 +14,7 @@ This documentation site is designed to help developers learn Vue.js through:
 - Interactive code examples
 - API references
 - Best practices and patterns
+- Quizzes and interactive learning elements
 
 ## 📚 Documentation Structure
 
@@ -27,7 +28,11 @@ The documentation is organized into several main sections:
 - **Scaling Up** - Single-File Components and larger application architecture
 - **Best Practices** - Recommended patterns and approaches
 - **TypeScript** - Using Vue with TypeScript
-- **Extra Topics** - Additional information and advanced concepts
+- **Extra Topics** - Additional information and advanced concepts including:
+  - Composition API FAQ
+  - Render Functions & JSX
+  - Ways to Use Vue
+  - Rendering Mechanism
 
 ## 🧞 Commands
 
@@ -50,8 +55,22 @@ This documentation site is built with:
 - [Starlight](https://starlight.astro.build) - Astro's documentation theme
 - [Vue.js](https://vuejs.org) - For interactive components
 - [React](https://reactjs.org) - For specific interactive components
-- [Tailwind CSS](https://tailwindcss.com) - For styling
-- [astro-live-code](https://github.com/withastro/astro-live-code) - For interactive code examples
+- [Starlight Videos](https://github.com/HiDeoo/starlight-videos) - For interactive quizzes and videos
+- [Expressive Code](https://github.com/expressive-code/expressive-code) - For code blocks and syntax highlighting
+- [Starlight Fullview Mode] - For a fullscreen reading experience
+- [Starlight Scroll To Top](https://github.com/frostybee/starlight-scroll-to-top) - For a scroll to top button
+- [Starlight Markdown Blocks](https://delucis.github.io/starlight-markdown-blocks/) - For custom markdown blocks
+- [Starlight Cooler Credit](https://github.com/trueberryless-org/starlight-cooler-credit) - For a cool footer credit
+- [Starlight Fullview Mode](https://github.com/WindMillCode/starlight-fullview-mode) - For a fullscreen reading experience
+
+## 📋 Features
+
+- **Interactive Components** - Live examples that demonstrate Vue.js concepts
+- **Quizzes** - Test your knowledge with embedded quizzes throughout the documentation
+- **Code Tabs** - Switch between different code examples and their previews
+- **Responsive Design** - Documentation works well on all device sizes
+- **Dark/Light Mode** - Choose your preferred theme for reading
+- **API Preference Switches** - Toggle between Options API and Composition API examples
 
 ## 🌐 Internationalization
 
@@ -63,6 +82,16 @@ The documentation is available in multiple languages:
 - French (fr)
 - Japanese (ja)
 - Chinese (zh-CN)
+
+> _Work in progress_
+
+## 🔧 Project Structure
+
+The documentation is built using Astro's content collections and Starlight's documentation theme:
+
+- `src/content/docs/` - Main documentation content in MDX format
+- `src/components/` - Vue and React components used in the documentation
+- `src/public/` - Static assets like images and logos
 
 ## 🤝 Contributing
 

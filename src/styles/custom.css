@@ -57,13 +57,12 @@
 }
 
 a {
-  color: #42b883;
   text-decoration: none;
   font-weight: 30px;
 }
 
 a:hover {
-  color: #35495e;
+  color: #42b883;
   text-decoration: none;
 }
 
