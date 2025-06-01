@@ -12,7 +12,7 @@ import Counter from "../../../components/counter.jsx";
 ## Single-File Components​
   In most build-tool-enabled Vue projects, components are written using a special HTML-like file format called a **Single-File Component (SFC)**(also known as `*.vue` files). As the name implies, a Vue SFC bundles the component’s template (HTML), logic (JavaScript), and styles (CSS) into a single file. Below is the same example rewritten using the SFC format:
   <Tabs>
-    <TabItem label="Code">
+    <TabItem label="Vue">
       <Code
         lang="vue"
         code={`
@@ -48,7 +48,7 @@ You can create Vue components in two different API styles: **Options API** and *
 ## Options API​
 When using Options API, component's logic are define using an object of options such as `data`, `methods`, and `mounted`. The properties defined in this object are accessible via `this` inside functions, where this refers to the component instance:
 <Tabs>
-  <TabItem label="Code">
+  <TabItem label="Vue">
     ```vue
     <script>
     export default {
@@ -104,7 +104,7 @@ For example, any imports, top-level variables, or functions declared in a `<scri
 
 Below is the same component, retaining the original template, but rewritten using the Composition API and `<script setup>`:
 <Tabs>
-  <TabItem label="Code">
+  <TabItem label="Vue">
     ```vue 
     <script setup>
     import { ref, onMounted } from "vue";
