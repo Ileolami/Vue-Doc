@@ -86,6 +86,7 @@ export default defineConfig({
             { slug: "guides/intro" },
             { slug: "guides/quick-start" },
             { slug: "guides/vue-components" },
+            { slug: "guides/glossary" },
           ],
         },
         {

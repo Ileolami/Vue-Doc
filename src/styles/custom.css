@@ -182,7 +182,7 @@ homeh2 {
   grid-template-columns: repeat(2, 1fr); /* Always two columns */
   align-items: center;
   justify-items: center;
-  background-color: rgba(69, 66, 66, 0.134);
+  background-color: rgba(69, 66, 66, 0.174);
   border-radius: 0.5rem;
 }
 .sponsors h4{
