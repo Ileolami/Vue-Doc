@@ -25,6 +25,7 @@ export default defineConfig({
       editLink: {
         baseUrl: "https://github.com/Ileolami/Vue-Doc/tree/main",
       },
+      lastUpdated: true,
       title: "Vue.js",
       plugins: [
       starlightFullViewMode({
