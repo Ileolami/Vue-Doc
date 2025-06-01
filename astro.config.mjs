@@ -27,6 +27,7 @@ export default defineConfig({
       },
       lastUpdated: true,
       title: "Vue.js",
+      description: "The Progressive JavaScript Framework",
       plugins: [
       starlightFullViewMode({
         leftSidebarEnabled: true,
@@ -83,6 +84,7 @@ export default defineConfig({
       sidebar: [
         {
           label: "Getting Started",
+          collapsed: true,
           items: [
             { slug: "guides/intro" },
             { slug: "guides/quick-start" },
@@ -92,6 +94,7 @@ export default defineConfig({
         },
         {
           label: "Essentials",
+          collapsed: true,
           items: [
             { slug: "essentials/create" },
             { slug: "essentials/template" },
@@ -103,6 +106,7 @@ export default defineConfig({
         },
         {
           label: "Components In-Depth",
+          collapsed: true,
           items: [
             { slug: "components-in-depth/registration" },
             { slug: "components-in-depth/props" },
@@ -113,6 +117,7 @@ export default defineConfig({
         },
         {
           label: "Reusability",
+          collapsed: true,
           items: [
             { slug: "reusability/composables" },
             { slug: "reusability/custom" },
@@ -121,6 +126,7 @@ export default defineConfig({
         },
         {
           label: "Built-in Components",
+          collapsed: true,
           items: [
             { slug: "built-in/transition" },
             { slug: "built-in/transition-group" },
@@ -131,6 +137,7 @@ export default defineConfig({
         },
         {
           label: "Scaling Up",
+          collapsed: true,
           items: [
             { slug: "scaling-up/sfc" },
             { slug: "scaling-up/tooling" },
@@ -141,6 +148,7 @@ export default defineConfig({
         },
         {
           label: "Best Practices",
+          collapsed: true,
           items: [
             { slug: "best-practices/production-deploy" },
             { slug: "best-practices/performance" },
@@ -150,6 +158,7 @@ export default defineConfig({
         },
         {
           label: "Typescript",
+          collapsed: true,
           items: [
             { slug: "typescripts/overview" },
             { slug: "typescripts/composition-api" },
@@ -158,6 +167,7 @@ export default defineConfig({
         }, 
         {
           label: "Extra Topics",
+          collapsed: true,
           items: [
             { slug: "extra-topics/ways-of-use" },
             { slug: "extra-topics/composition-api-faq" },
