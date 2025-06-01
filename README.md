@@ -57,7 +57,6 @@ This documentation site is built with:
 - [React](https://reactjs.org) - For specific interactive components
 - [Starlight Videos](https://github.com/HiDeoo/starlight-videos) - For interactive quizzes and videos
 - [Expressive Code](https://github.com/expressive-code/expressive-code) - For code blocks and syntax highlighting
-- [Starlight Fullview Mode] - For a fullscreen reading experience
 - [Starlight Scroll To Top](https://github.com/frostybee/starlight-scroll-to-top) - For a scroll to top button
 - [Starlight Markdown Blocks](https://delucis.github.io/starlight-markdown-blocks/) - For custom markdown blocks
 - [Starlight Cooler Credit](https://github.com/trueberryless-org/starlight-cooler-credit) - For a cool footer credit
@@ -92,21 +91,7 @@ The documentation is built using Astro's content collections and Starlight's doc
 - `src/content/docs/` - Main documentation content in MDX format
 - `src/components/` - Vue and React components used in the documentation
 - `src/public/` - Static assets like images and logos
-
-## 🤝 Contributing
-
-Contributions are welcome! If you'd like to help improve the Vue.js documentation:
-
-1. Fork this repository
-2. Create a new branch for your changes
-3. Make your changes
-4. Submit a pull request
-
-Please ensure your contributions follow our style guide and include appropriate examples.
-
-## 📝 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+- `src/styles/` - Global styles and customizations
 
 ## 🔗 Useful Links
 
@@ -115,4 +100,3 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - [Vue.js Discord Community](https://discord.gg/vuejs)
 - [Vue Mastery](https://www.vuemastery.com) - Premium Vue tutorials
 - [Astro Starlight](https://starlight.astro.build)
-

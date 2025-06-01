@@ -47,9 +47,17 @@ Using v-html directive: <span style="color: red">This should be red.</span>
 </TabItem>
 </Tabs>
 
-Here we're encountering something new. The `v-html` attribute you're seeing is called a directive. Directives are prefixed with `v-` to indicate that they are special attributes provided by Vue, and as you may have guessed, they apply special reactive behavior to the rendered DOM. Here, we're basically saying "keep this element's inner HTML up-to-date with the `rawHtml` property on the current active instance."
+Here you're encountering something new. The `v-html` attribute you're seeing is called a **directive**. 
 
-The contents of the `span` will be replaced with the value of the `rawHtml` property, interpreted as plain HTML - data bindings are ignored. Note that you cannot use `v-html` to compose template partials, because Vue is not a string-based templating engine. Instead, components are preferred as the fundamental unit for UI reuse and composition.
+Directives are prefixed with `v-` to indicate that they are special attributes provided by Vue, and as you may have guessed, they apply special reactive behavior to the rendered DOM. 
+
+In the example above, it's basically saying "**keep this element's inner HTML up-to-date with the `rawHtml` property on the current active instance**."
+
+The contents of the `span` will be replaced with the value of the `rawHtml` property, interpreted as plain HTML - data bindings are ignored. 
+
+:::note
+You cannot use `v-html` to compose template partials, because Vue is not a string-based templating engine. Instead, components are preferred as the fundamental unit for UI reuse and composition.
+:::
 
 <Aside type="caution" title="Security Warning">
   Dynamically rendering arbitrary HTML on your website can be very dangerous
@@ -78,7 +86,9 @@ Because `v-bind` is so commonly used, it has a dedicated shorthand syntax:
 <div :id="dynamicId"></div>
 ```
 
-Attributes that start with `:` may look a bit different from normal HTML, but it is in fact a valid character for attribute names and all Vue-supported browsers can parse it correctly. In addition, they do not appear in the final rendered markup. The shorthand syntax is optional, but you will likely appreciate it when you learn more about its usage later.
+Attributes that start with `:` may look a bit different from normal HTML, but it is in fact a valid character for attribute names and all Vue-supported browsers can parse it correctly. 
+
+In addition, they do not appear in the final rendered markup. The shorthand syntax is optional, but you will likely appreciate it when you learn more about its usage later.
 
 :::note
 Throughout this guide, code examples will use the shorthand syntax, since it is the most commonly used approach among Vue developers
@@ -136,7 +146,7 @@ You can bind them to a single element by using `v-bind` without an argument:
 
 ## Using JavaScript Expressions
 
-So far we've only been binding to simple property keys in our templates. But Vue actually supports the full power of JavaScript expressions inside all data bindings:
+So far you've only been binding to simple property keys in your templates. But Vue actually supports the full power of JavaScript expressions inside all data bindings:
 
 ```html
 {{ number + 1 }} {{ ok ? 'YES' : 'NO' }} {{ message.split('').reverse().join('')

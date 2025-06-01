@@ -230,7 +230,7 @@ export default {
 
 However, this approach is problematic for components that are reused because a debounced function is stateful: it maintains some internal state on the elapsed time. If multiple component instances share the same debounced function, they will interfere with one another.
 
-To keep each component instance's debounced function independent of the others, we can create the debounced version in the `created` lifecycle hook:
+To keep each component instance's debounced function independent of the others, you can create the debounced version in the `created` lifecycle hook:
 
 <Code
 lang="js"
