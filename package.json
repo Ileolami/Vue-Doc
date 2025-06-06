@@ -30,6 +30,7 @@
     "starlight-fullview-mode": "^0.2.3",
     "starlight-markdown-blocks": "^0.1.0",
     "starlight-scroll-to-top": "^0.1.1",
+    "starlight-sidebar-topics": "^0.6.0",
     "starlight-videos": "^0.3.0",
     "xstate": "^5.19.3"
   },

@@ -265,18 +265,3 @@ code={`
 
 You will notice that components can potentially have more than one root node. When applied to a multi-root component, a directive will be ignored and a warning will be thrown. Unlike attributes, directives can't be passed to a different element with `v-bind="$attrs"`.
 
----
-
-## Quiz
-<Quiz title="1. When should custom directives be used in Vue?" multiple>
-  <QuizOption>When you want to reuse logic that involves low-level DOM access on plain elements</QuizOption>
-  <QuizOption correct>When the desired functionality can only be achieved via direct DOM manipulation</QuizOption>
-  <QuizOption>When you want to create an application</QuizOption>
-  <QuizOption>When you want to create a custom directive that can be used in components</QuizOption>
-</Quiz>
-
-<Quiz title="2. Which of the following is true about custom directives in Vue?" multiple>
-  <QuizOption correct>They are mainly intended for reusing logic that involves low-level DOM access on plain elements.</QuizOption>
-  <QuizOption >It is not compuslory to register Custom directives </QuizOption>
-  <QuizOption correct>They are defined as an object containing lifecycle hooks similar to those of a component</QuizOption>
-</Quiz>

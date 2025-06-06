@@ -108,36 +108,3 @@ To answer this question, it is important to note that **separation of concerns i
 In modern UI development, we have found that instead of dividing the codebase into three huge layers that interweave with one another, it makes much more sense to divide them into loosely-coupled components and compose them. Inside a component, its template, logic, and styles are inherently coupled, and colocating them actually makes the component more cohesive and maintainable.
 
 Note even if you don't like the idea of Single-File Components, you can still leverage its hot-reloading and pre-compilation features by separating your JavaScript and CSS into separate files using [Src Imports](https://vuejs.org/api/sfc-spec.html#src-imports).
-
----
-
-## Quiz 
-<Quiz title="What is a key benefit of using Vue Single-File Components (SFCs)?">
-  <QuizOption>
-    They require no build step at all
-  </QuizOption>
-  <QuizOption correct>
-    They colocate template, logic, and styles for better maintainability
-  </QuizOption>
-  <QuizOption>
-    They only support JavaScript logic
-  </QuizOption>
-  <QuizOption>
-    They prevent the use of scoped CSS
-  </QuizOption>
-</Quiz>
-
-<Quiz title="How does Vue recommend thinking about 'separation of concerns' in modern UI development?">
-  <QuizOption>
-    By strictly separating HTML, CSS, and JavaScript into different files
-  </QuizOption>
-  <QuizOption correct>
-    By dividing code into loosely-coupled components that colocate template, logic, and styles
-  </QuizOption>
-  <QuizOption>
-    By writing all code in a single global file
-  </QuizOption>
-  <QuizOption>
-    By avoiding the use of components altogether
-  </QuizOption>
-</Quiz>

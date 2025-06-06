@@ -274,19 +274,3 @@ It is important to remember that computed getter functions should only perform p
 
 ### Avoid mutating computed value​
 The returned value from a computed property is derived state. Think of it as a temporary snapshot - every time the source state changes, a new snapshot is created. It does not make sense to mutate a snapshot, so a computed return value should be treated as read-only and never be mutated - instead, update the source state it depends on to trigger new computations.
-
-## Quiz
-
-<Quiz title="1. Which of the following is true about computed properties?">
-  <QuizOption>Computed properties are not cached</QuizOption>
-  <QuizOption correct>Computed properties are cached based on their reactive dependencies</QuizOption>
-  <QuizOption>Computed properties are not reactive</QuizOption>
-  <QuizOption>Computed properties are not reactive and are not cached</QuizOption>
-</Quiz>
-
-<Quiz title="2. Which of the following is true about computed properties?">
-  <QuizOption>Computed properties are declared using the `computed` option in the Options API</QuizOption>
-  <QuizOption>Computed properties are declared using the `computed` function in the Composition API</QuizOption>
-  <QuizOption correct>Both of the above</QuizOption>
-  <QuizOption>Computed properties are not supported in the Composition API</QuizOption>
-</Quiz>

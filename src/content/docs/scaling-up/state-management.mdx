@@ -226,35 +226,3 @@ Existing users may be familiar with Vuex, the previous official state management
 Pinia started out as an exploration of what the next iteration of Vuex could look like, incorporating many ideas from core team discussions for Vuex 5. Eventually, we realized that Pinia already implements most of what we wanted in Vuex 5, and decided to make it the new recommendation instead.
 
 Compared to Vuex, Pinia provides a simpler API with less ceremony, offers Composition-API-style APIs, and most importantly, has solid type inference support when used with TypeScript.
-
-## Quiz
-
-<Quiz title="What is the recommended state management library for new Vue applications?">
-  <QuizOption>
-    Vuex
-  </QuizOption>
-  <QuizOption>
-    Redux
-  </QuizOption>
-  <QuizOption>
-    MobX
-  </QuizOption>
-  <QuizOption correct>
-    Pinia
-  </QuizOption>
-</Quiz>
-
-<Quiz title="Why is using a singleton store pattern problematic with Server-Side Rendering (SSR)?">
-  <QuizOption>
-    It increases the bundle size
-  </QuizOption>
-  <QuizOption correct>
-    It can cause cross-request state pollution by sharing state between users
-  </QuizOption>
-  <QuizOption>
-    It disables reactivity
-  </QuizOption>
-  <QuizOption>
-    It prevents hot module replacement
-  </QuizOption>
-</Quiz>

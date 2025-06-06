@@ -195,26 +195,3 @@ HTTP security vulnerabilities, such as cross-site request forgery (CSRF/XSRF) an
 
 There are some additional security concerns when using SSR, so make sure to follow the best practices outlined throughout our [SSR documentation](/scaling-up/ssr) to avoid vulnerabilities.
 
-## Quiz
-
-<Quiz title="1. Which of the following is a fundamental security rule when using Vue?">
-  <QuizOption>Always use the latest version of Vue</QuizOption>
-  <QuizOption correct>Never use non-trusted content as your component template</QuizOption>
-  <QuizOption>Always sanitize URLs on the frontend</QuizOption>
-  <QuizOption>Avoid using v-html directive completely</QuizOption>
-</Quiz>
-
-<Quiz title="2. What happens when Vue renders user-provided content in templates?">
-  <QuizOption>Content is rendered as-is without any protection</QuizOption>
-  <QuizOption>Vue throws an error if it detects potentially malicious content</QuizOption>
-  <QuizOption correct>Content is automatically escaped to prevent script injection</QuizOption>
-  <QuizOption>Vue requires a special security plugin to handle user content</QuizOption>
-</Quiz>
-
-<Quiz title="3. Which of the following practices can lead to security vulnerabilities?" multiple>
-  <QuizOption>Using automatic escaping for HTML content</QuizOption>
-  <QuizOption correct>Using v-html with user-provided content</QuizOption>
-  <QuizOption correct>Binding user-provided JavaScript to event attributes</QuizOption>
-  <QuizOption correct>Allowing users to provide values for style bindings without restrictions</QuizOption>
-</Quiz>
-

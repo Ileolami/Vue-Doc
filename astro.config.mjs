@@ -60,9 +60,6 @@ export default defineConfig({
           },
         },
       },
-      components: {
-        TableOfContents: "./src/components/overrides/TableOfContents.astro",
-      },
       tableOfContents: { maxHeadingLevel: 2 },
       customCss: [
         // Relative path to your custom CSS file
@@ -93,7 +90,7 @@ export default defineConfig({
           ],
         },
         {
-          label: "Essentials",
+          label: "Fundamentals",
           collapsed: true,
           items: [
             { slug: "essentials/create" },
@@ -166,12 +163,12 @@ export default defineConfig({
           ],
         }, 
         {
-          label: "Extra Topics",
+          label: "Guides",
           collapsed: true,
           items: [
             { slug: "extra-topics/ways-of-use" },
-            { slug: "extra-topics/composition-api-faq" },
             { slug: "extra-topics/reactivity-indepth" },
+            { slug: "extra-topics/composition-api-faq" },
             { slug: "extra-topics/rendering-mechanism" },
             { slug: "extra-topics/render-function" },
           ],
